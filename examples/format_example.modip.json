@@ -37,7 +37,7 @@
       "team": true,
       "id": "111111-111111-111111-111111-111111",
       "name": "MODIP Contributors",
-      "uri": "https://github.com/mc-cip",
+      "uri": "https://github.com/modip-org",
       "members": [
         {
           "id": "111111-111111-111111-111111-111111",
@@ -68,7 +68,7 @@
     {
       "rel": "scm",
       "name": "Project GitHub",
-      "uri": "https://github.com/mc-cip/exampleproject"
+      "uri": "https://github.com/modi-org/exampleproject"
     }
   ],
   "successor": [
