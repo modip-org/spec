@@ -68,24 +68,17 @@ If a dependency has the `src` field, it means that at that specified URL is full
 
 ## Implementing Conditions
 
-Conditions allow fields to be changed based on certain variables. Conditions can be present on almost any field, so it's important to know what is or isn't a condition.
+Conditions allow fields to be changed based on certain variables. Conditions can only be present on certain fields.
 
-Fields which are an Object cannot be a condition themselves. For example, the `license` field cannot be a conditions object.
-
-When parsing an object with conditions, apply conditions at the end. For example, consider the following object:
+Below is an example condition, for a dependency's `required` field.
 
 ```json
-"conditions": {
+"required": {
   "environment": {
-    "client": {
-      "required": false
-    },
-    "server": {
-      "required": true
-    }
+    "client": true,
+    "server": false
   }
-},
-"required": true
+}
 ```
 
-If your launchers considers itself to be a client, the value of `required` should be false, even though conditions are listed before the `"required": true` value.
+If your launcher considers itself to be a client, the value of `required` should be true, and if your launcher considers itself a server, the value of `required` should be false.

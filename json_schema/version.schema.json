@@ -30,25 +30,20 @@
               "type": "boolean"
             },
             {
-              "$ref": "#/definitions/conditional"
+              "$ref": "#/definitions/condition"
             }
           ]
         },
         "allowed": {
-          "description": "Whether or not this Dependency is allowed. Used with conditionals.",
+          "description": "Whether or not this Dependency is allowed. Used with conditions.",
           "oneOf": [
             {
               "type": "boolean"
             },
             {
-              "$ref": "#/definitions/conditional"
+              "$ref": "#/definitions/condition"
             }
           ]
-        },
-        "conditions": {
-          "type": "object",
-          "description": "Condition-specific properties.",
-          "$ref": "#/definitions/conditional"
         },
         "version": {
           "oneOf": [
@@ -138,9 +133,9 @@
         }
       ]
     },
-    "conditional": {
+    "condition": {
       "type": "object",
-      "description": "Conditional match",
+      "description": "Condition match",
       "additionalProperties": false,
       "properties": {
         "environment": {
@@ -148,8 +143,14 @@
           "description": "Minecraft Game Environment",
           "additionalProperties": false,
           "properties": {
-            "client": {},
-            "server": {}
+            "client": {
+              "type": "boolean",
+              "description": "Client-side"
+            },
+            "server": {
+              "type": "boolean",
+              "description": "Server-side"
+            }
           }
         }
       }
@@ -196,11 +197,6 @@
       "type": "object",
       "description": "Installation Information for this version.",
       "$ref": "#/definitions/installation"
-    },
-    "conditions": {
-      "type": "object",
-      "description": "Condition-specific properties.",
-      "$ref": "#/definitions/conditional"
     },
     "files": {
       "type": "array",
@@ -262,6 +258,17 @@
               "description": "A URL linking to this file.",
               "format": "uri"
             }
+          },   
+          "allowed": {
+            "description": "Whether or not this file is allowed. Used with conditions.",
+            "oneOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "$ref": "#/definitions/condition"
+              }
+            ]
           }
         }
       }

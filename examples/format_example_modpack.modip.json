@@ -151,6 +151,23 @@
             "overrides.zip/resources/",
             "overrides.zip/resources/example_resource.png"
           ]
+        },
+        {
+          "rel": "compressedOverrides",
+          "name": "overrides-server.zip",
+          "sha256": "< sum goes here >",
+          "downloads": [
+            "https://example.com/download/oevrrides.zip"
+          ],
+          "allowed": {
+            "environment": {
+              "client": false,
+              "server": true
+            }
+          },
+          "_comment": [
+            "This file is only allowed on a server"
+          ]
         }
       ]
     }

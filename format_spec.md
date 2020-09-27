@@ -151,7 +151,7 @@ The identifier of the license. Valid options are:
 
 - [All SPDX License Identifiers](https://spdx.org/licenses/)
 - `ARR` - All Rights Reserved
-- `MMPL` - Minecraft Mod Public License
+- `MMPL-1.0` - Minecraft Mod Public License
 - `Generic-Open` - An generic open source license
 - `Generic-Proprietary` - An generic proprietary license
 
@@ -271,13 +271,7 @@ The changelog of this version. The changelog MAY contain HTML. It follows the sa
 
 ### `allowed` (optional)
 
-Whether or not this version is allowed. Used with `conditions`. Can be `true` or `false`.
-
----
-
-### `conditions` (optional)
-
-See "Conditions" at the end of this document.
+Whether or not this version is allowed. Can be `true` or `false`. **MAY be a condition.**
 
 ---
 
@@ -293,15 +287,11 @@ The ID of the required dependency. If this project is a Framework, it MUST be on
 
 ##### `allowed` (optional)
 
-Whether or not this dependency is allowed. Used in combination with conditions. Can be `true` or `false`.
-
-##### `conditions` (optional)
-
-See "Conditions" at the end of this document.
+Whether or not this dependency is allowed. Can be `true` or `false`. **MAY be a condition.**
 
 ##### `required`
 
-This field is a boolean that indicates whether a dependency is required in order for the Project requiring it to function properly. Can be used as a conditional.
+This field is a boolean that indicates whether a dependency is required in order for the Project requiring it to function properly. **MAY be a condition.**
 
 ##### `version`
 
@@ -348,6 +338,10 @@ The installation field CAN be present for BOTH Version and File Objects, similar
 
 If the installation field is present in the Version, it is not required in the file. If it's NOT present in the version, it MUST be present for the file. The per-version installation field exists for Frameworks to avoid unnecessary fields and to be clearer about how a version should be installed. For an example Framework in the MODIP format, please view **examples/format_example_fabric_loader.json**.
 
+##### `allowed` (optional)
+
+Specifies whether this file is allowed to be installed. Used in conjunction with Conditions. **This field MAY be a condition.**
+
 ##### `downloads`
 
 This field MUST be an array containing a download source of the file, stored as a String. The download sources go from highest priority to lowest priority inside the array. For example:
@@ -368,25 +362,7 @@ If a launcher was trying to download the file, it would first try at `firsthosti
 Conditions allow specific fields to be applied based on certain variables. Below is an example usage of conditions, using the `environment` group and `client` and `server` options.
 
 ```json
-"conditions": {
-  "environment": {
-    "client": {
-      "allowed": true,
-    },
-    "server": {
-      "allowed": false
-    }
-  }
-}
-
-```
-
-See **format_values.md** for the list of conditions and groups.
-
-Conditions can also be defined directly for a field.
-
-```json
-"allowed": {
+"required": {
   "environment": {
     "client": true,
     "server": false
@@ -394,6 +370,8 @@ Conditions can also be defined directly for a field.
 }
 ```
 
-Direct-field conditions can only be used in fields which are of String, Boolean, Number, or Array types. Conditions CANNOT be used for fields which store Objects. If you wish to use conditions for Objects, use the `conditions` field.
+See **format_values.md** for the list of conditions and groups.
+
+Conditions CANNOT be used for fields which do not explicitly allow them.
 
 For information on how to implement conditions in a launcher, see **format_implementing.md**.

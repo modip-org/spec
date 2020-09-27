@@ -81,14 +81,10 @@ This is serverside and not a client.
 Below is an example using the `environment` group and `client` and `server` options.
 
 ```json
-"conditions": {
+"required": {
   "environment": {
-    "client": {
-      "allowed": true,
-    },
-    "server": {
-      "allowed": false
-    }
+    "client": true,
+    "server": false
   }
 }
 

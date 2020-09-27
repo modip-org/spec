@@ -58,11 +58,6 @@
       "installation": {
         "method": "versionJsonInstall"
       },
-      "_comment": [
-        "All information about the Fabric install can be found in the version.json file",
-        "This is why no extra files have to be linked",
-        "Extra files CAN be added, however the installation method could no longer be 'versionJsonInstall' if those files are intended to be used to install Fabric"
-      ],
       "dependencies": [
         {
           "id": "minecraft",
