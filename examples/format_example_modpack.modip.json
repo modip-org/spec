@@ -1,5 +1,5 @@
 {
-  "$schema": "../json_schema/project.schema.json",
+  "$schema": "../json_schema/1.0.0.schema.json",
   "_comment": [
     "This file demonstrates an example modpack with 3 mods and overrides in the MODIP format"
   ],

@@ -212,12 +212,19 @@ The link, to be viewed in a web browser.
 
 ### `successors` and `predecessors` (optional)
 
-If an older or newer version of a Project exists, but has a separate ID, these fields may be used. These fields MUST be an Array representing the respective projects' IDs. The Projects should be listed in chronological order from when they were first released.
+If an older or newer version of a Project exists, but has a separate ID, these fields may be used. These fields MUST be an Array containing the respective project's IDs and optionally `src` fields. The Projects should be listed in chronological order from when they were first released.
 
-```json
+```jsonc
 "successors": [
-  "first-successor",
-  "second-successor
+  {
+    "id": "first-successor"
+  },
+  {
+    "id": "second-successor",
+    "src": "https://example.com/second-successor.modip.json"
+    // This successor is hosted externally, and not on the same host as the parent project
+    // See the `src` field in dependencies for more info.
+  }
 ]
 ```
 
@@ -271,7 +278,7 @@ The changelog of this version. The changelog MAY contain HTML. It follows the sa
 
 ### `allowed` (optional)
 
-Whether or not this version is allowed. Can be `true` or `false`. **MAY be a condition.**
+Whether or not this version is allowed. **MUST be a condition.**
 
 ---
 
@@ -287,7 +294,7 @@ The ID of the required dependency. If this project is a Framework, it MUST be on
 
 ##### `allowed` (optional)
 
-Whether or not this dependency is allowed. Can be `true` or `false`. **MAY be a condition.**
+Same as `version.allowed` except for this dependency.
 
 ##### `required`
 
@@ -297,11 +304,13 @@ This field is a boolean that indicates whether a dependency is required in order
 
 This field MUST be either an Array or String. If this field is an array, it MUST contain a list of compatible versions. If this field is a String, it MUST contain a Semantic Versioning comparison String. An example of a comparison string is `>= 25.0.219`.
 
+##### `src` (optional)
+
+If not all information is listed inside a dependency object and it's metadata is not hosted on the same host which is serving metadata for the parent project, the `src` field may be used. This field MUST contain a URL. This URL MUST serve MODIP Format-compliant metadata about the required dependency. It MUST include the `versions` field.
+
 <br>
 
 The required Minecraft Version also MUST be stored as a dependency. It's `id` value MUST be set to `minecraft`. It also MUST not contain the `required` field, as Minecraft is not an optional component.
-
-If not all information is listed inside a dependency object and it's metadata is not hosted on the same host which is serving metadata for the parent project, the `src` field may be used. This field MUST contain a URL. This URL MUST serve MODIP Format-compliant metadata about the required dependency. It MUST include the `versions` field.
 
 A dependencies implementation guide for launchers is available in **format_implementing.md**.
 

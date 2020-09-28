@@ -1,0 +1,558 @@
+{
+  "$id": "1.0.0.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MODIP Metadata Format version 1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "author": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "A unique identifier of this author."
+        },
+        "name": {
+          "type": "string",
+          "description": "A human-readable name of this author"
+        },
+        "uri": {
+          "type": "string",
+          "description": "A URI users can visit to view more about this author.",
+          "format": "uri"
+        }
+      }
+    },
+    "relatedProject": {
+      "type": "object",
+      "description": "A related project.",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "src": {
+          "type": "string",
+          "description": "An external source where more metadata about this dependency can be found.",
+          "format": "uri"
+        },
+        "id": {
+          "type": "string",
+          "description": "A unique ID for this Project."
+        }
+      }
+    },
+    "dependency": {
+      "allOf": [{ "$ref": "#/definitions/relatedProject"}],
+      "required": [
+        "id",
+        "version"
+      ],
+      "properties": {
+        "version": {
+          "oneOf": [
+            {
+              "type": "array",
+              "description": "An array listing compatible versions.",
+              "items": {
+                "type": "string",
+                "description": "A compatible version"
+              }
+            },
+            {
+              "type": "string",
+              "description": "A SemVer comparison string.",
+              "examples": [
+                ">= 25.0.219"
+              ]
+            }
+          ]
+        },
+        "allowed": {
+          "description": "Whether or not this dependency is allowed. Used with conditions.",
+          "$ref": "#/definitions/condition"
+        },
+        "required": {
+          "description": "Whether or not this dependency is required.",
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/condition"
+            }
+          ]
+        }
+      }
+    },
+    "condition": {
+      "type": "object",
+      "description": "Condition match",
+      "additionalProperties": false,
+      "properties": {
+        "environment": {
+          "type": "object",
+          "description": "Minecraft Game Environment",
+          "additionalProperties": false,
+          "properties": {
+            "client": {
+              "type": "boolean",
+              "description": "Client-side"
+            },
+            "server": {
+              "type": "boolean",
+              "description": "Server-side"
+            }
+          }
+        }
+      }
+    },
+    "installation": {
+      "type": "object",
+      "description": "Installation information",
+      "additionalProperties": false,
+      "required": [
+        "method"
+      ],
+      "properties": {
+        "method": {
+          "type": "string",
+          "description": "The installation method to use.",
+          "enum": [
+            "placeInDirectory",
+            "versionJsonInstall",
+            "runInstaller",
+            "classpathLibrary",
+            "instanceInstall",
+            "jarMod",
+            "other"
+          ]
+        },
+        "directory": true,
+        "versionJson": true
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "method": {
+              "const": "placeInDirectory"
+            },
+            "directory": {
+              "type": "string",
+              "description": "The directory to place this in."
+            }
+          },
+          "required": [
+            "directory"
+          ]
+        },
+        {
+          "properties": {
+            "method": {
+              "const": "classpathLibrary"
+            },
+            "versionJson": {
+              "type": "object",
+              "description": "The library as written in version JSON format."
+            }
+          }
+        },
+        {
+          "properties": {
+            "method": {
+              "enum": [
+                "versionJsonInstall",
+                "runInstaller",
+                "instanceInstall",
+                "jarMod",
+                "other"
+              ]
+            },
+            "directory": false,
+            "versionJson": false
+          }
+        }
+      ]
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "id",
+    "name"
+  ],
+  "properties": {
+    "$schema": true,
+    "schemaVersion": {
+      "type":        "string",
+      "description": "The version of the MODIP Metadata Format.",
+      "pattern":     "^[0-9]+(\\.[0-9]+){0,2}$"
+    },
+    "id": {
+      "type": "string",
+      "description": "A unique identifier for this Project."
+    },
+    "name": {
+      "type": "string",
+      "description": "The human-readable name of this Project."
+    },
+    "summary": {
+      "type": "string",
+      "description": "A short summary of this project, without HTML."
+    },
+    "description": {
+      "type": "string",
+      "description": "A long description of this project. May contain HTML."
+    },
+    "media": {
+      "type": "array",
+      "description": "Media Items for this Project.",
+      "items": {
+        "type": "object",
+        "description": "A Media Item.",
+        "additionalProperties": false,
+        "properties": {
+          "rel": {
+            "type": "string",
+            "description": "Relation of this Media Item.",
+            "enum": [
+              "icon",
+              "gallery"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of this Media Item.",
+            "enum": [
+              "image",
+              "video"
+            ]
+          },
+          "src": {
+            "type": "string",
+            "description": "The source of this Media Item.",
+            "format": "uri"
+          },
+          "caption": {
+            "type": "string",
+            "description": "A caption for this Media Item. Cannot contain HTML."
+          },
+          "sha256": {
+            "type": "string",
+            "description": "An SHA256 hash of the item linked to in src. Conflicts with embed."
+          },
+          "embed": {
+            "type": "string",
+            "description": "A link to an embedded webpage. Conflicts with sha256 and src.",
+            "format": "uri"
+          }
+        },
+        "oneOf": [
+          {
+            "properties": {
+              "embed": false
+            },
+            "required": [
+              "src",
+              "rel",
+              "type"
+            ]
+          },
+          {
+            "properties": {
+              "sha256": false,
+              "src": false
+            },
+            "required": [
+              "rel",
+              "type",
+              "embed"
+            ]
+          }
+        ]
+      }
+    },
+    "authors": {
+      "type": "array",
+      "description": "The authors of this Project.",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "description": "An individual author.",
+            "$ref": "#/definitions/author"
+          },
+          {
+            "type": "object",
+            "description": "A Team consisting of multiple authors.",
+            "additionalProperties": false,
+            "required": [
+              "team",
+              "id",
+              "name",
+              "members"
+            ],
+            "properties": {
+              "team": {
+                "const": true,
+                "description": "Indicates whether or not this is a Team. Must be 'true' for Teams."
+              },
+              "id": {
+                "type": "string",
+                "description": "A unique identifier of this Team."
+              },
+              "name": {
+                "type": "string",
+                "description": "A human-readable name of this Team."
+              },
+              "uri": {
+                "type": "string",
+                "description": "A URI users can visit to view more about this Team.",
+                "format": "uri"
+              },
+              "members": {
+                "type": "array",
+                "description": "A list of authors that are part of this Team.",
+                "items": {
+                  "$ref": "#/definitions/author"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "A tag that can be used to categorize this Project.",
+        "examples": [
+          "mod",
+          "modpack",
+          "resourcepack",
+          "datapack",
+          "world",
+          "framework"
+        ]
+      }
+    },
+    "license": {
+      "type": "object",
+      "description": "License Information for this Project.",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "uri"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "An identifier for this license. Includes all SPDX identifiers, as well as ARR, MMPL-1.0, Generic-Open, and Generic-Proprietary."
+        },
+        "name": {
+          "type": "string",
+          "description": "A human-readable name of this license."
+        },
+        "uri": {
+          "type": "string",
+          "description": "A URI where the full text of this license can be viewed.",
+          "format": "uri"
+        },
+        "modpackUsage": {
+          "type": "string",
+          "description": "Information on whether this Project can be used in modpacks.",
+          "enum": [
+            "alwaysAllow",
+            "requiresPermission",
+            "neverAllow"
+          ]
+        }
+      }
+    },
+    "links": {
+      "type": "array",
+      "description": "A list of links relating to this Project.",
+      "items": {
+        "type": "object",
+        "description": "A Link Object related to the Project.",
+        "required": [
+          "rel",
+          "name",
+          "uri"
+        ],
+        "properties": {
+          "rel": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ],
+            "description": "The relation of this Link to the Project. Can be an array.",
+            "examples": [
+              "homepage",
+              "documentation",
+              "wiki",
+              "scm",
+              "issues",
+              "community"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "description": "A human-readable name of this Link."
+          },
+          "uri": {
+            "type": "string",
+            "description": "The Link, which can be viewed in a web browser.",
+            "format": "uri"
+          }
+        }
+      }
+    },
+    "successors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/relatedProject"
+      },
+      "description": "Successor projects."
+    },
+    "predecessors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/relatedProject"
+      },
+      "description": "Predecessor projects."
+    },
+    "versions": {
+      "type": "array",
+      "description": "Version information for this Project.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "MODIP Version Metadata",
+        "required": [
+          "id",
+          "name",
+          "files"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "A unique identifier for this version."
+          },
+          "name": {
+            "type": "string",
+            "description": "A human-readable name of this version."
+          },
+          "semver": {
+            "type": "string",
+            "description": "A Semantic Versioning compatible version number."
+          },
+          "releaseDate": {
+            "type": "string",
+            "description": "The release date of this version, stored as ISO-8601 conforming.",
+            "pattern": "(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2})\\:(\\d{2})\\:(\\d{2})Z",
+            "examples": [
+              "2020-01-01T12:00:00Z"
+            ]
+          },
+          "changelog": {
+            "type": "string",
+            "description": "A changelog for this version. May contain HTML."
+          },
+          "dependencies": {
+            "type": "array",
+            "description": "Required or optional dependencies for this version.",
+            "items": {
+              "$ref": "#/definitions/dependency"
+            }
+          },
+          "installation": {
+            "type": "object",
+            "description": "Installation Information for this version.",
+            "$ref": "#/definitions/installation"
+          },
+          "files": {
+            "type": "array",
+            "description": "An array containing the files for this version.",
+            "items": {
+              "type": "object",
+              "description": "A file object.",
+              "additionalProperties": false,
+              "required": [
+                "name",
+                "sha256",
+                "rel",
+                "downloads"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The name of this file."
+                },
+                "sha256": {
+                  "type": "string",
+                  "description": "An SHA256 checksum of this file."
+                },
+                "rel": {
+                  "type": "string",
+                  "description": "The relation of this file.",
+                  "examples": [
+                    "primary",
+                    "source",
+                    "deobf",
+                    "javadoc",
+                    "installerWin",
+                    "installerMacos",
+                    "installerLinux",
+                    "installerGeneric",
+                    "versionJson",
+                    "compressedOverrides",
+                    "forgeUniversal",
+                    "forgeMdk"
+                  ]
+                },
+                "dependencies": {
+                  "type": "array",
+                  "description": "Dependencies for this specific file.",
+                  "items": {
+                    "$ref": "#/definitions/dependency"
+                  }
+                },
+                "installation": {
+                  "type": "object",
+                  "description": "Installation Information for this file.",
+                  "$ref": "#/definitions/installation"
+                },
+                "downloads": {
+                  "type": "array",
+                  "description": "An array containing download sources for this file.",
+                  "items": {
+                    "type": "string",
+                    "description": "A URL linking to this file.",
+                    "format": "uri"
+                  }
+                },   
+                "allowed": {
+                  "description": "Whether or not this file is allowed. Used with conditions.",
+                  "$ref": "#/definitions/condition"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

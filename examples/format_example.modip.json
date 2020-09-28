@@ -1,5 +1,5 @@
 {
-  "$schema": "../json_schema/project.schema.json",
+  "$schema": "../json_schema/1.0.0.schema.json",
   "schemaVersion": "1.0.0",
   "id": "111111-111111-111111-111111-111111",
   "name": "Example Project",
@@ -72,11 +72,18 @@
     }
   ],
   "successors": [
-    "successor-mod",
-    "other-successor-mod"
+    {
+      "id": "successor-mod",
+      "src": "https://example.com/external-source.modip.json"
+    },
+    {
+      "id": "other-successor-mod"
+    }
   ],
   "predecessors": [
-    "predecessor-mod"
+    {
+      "id": "predecessor-mod"
+    }
   ],
   "versions": [
     {
@@ -94,7 +101,7 @@
           ]
         },
         {
-          "src": "https://example.com/external-modip-metadata.json",
+          "src": "https://example.com/external-modip-metadata.modip.json",
           "id": "example-library-mod",
           "required": true,
           "version": [
