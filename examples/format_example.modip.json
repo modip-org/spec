@@ -1,6 +1,6 @@
 {
   "$schema": "../json_schema/project.schema.json",
-  "schemaVersion": 1,
+  "schemaVersion": "1.0.0",
   "id": "111111-111111-111111-111111-111111",
   "name": "Example Project",
   "summary": "This is a short, one-sentence summary of the Example Project.",
@@ -71,11 +71,13 @@
       "uri": "https://github.com/modip-org/exampleproject"
     }
   ],
-  "successor": [
+  "successors": [
     "successor-mod",
     "other-successor-mod"
   ],
-  "predecessor": "predecessor-mod",
+  "predecessors": [
+    "predecessor-mod"
+  ],
   "versions": [
     {
       "id": "1.0.0",

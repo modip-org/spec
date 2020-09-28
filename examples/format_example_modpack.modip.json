@@ -3,7 +3,7 @@
   "_comment": [
     "This file demonstrates an example modpack with 3 mods and overrides in the MODIP format"
   ],
-  "schemaVersion": 1,
+  "schemaVersion": "1.0.0",
   "id": "111111-111111-111111-111111-111111",
   "name": "Example Modpack",
   "summary": "This is a short, one-sentence summary of the Example Modpack.",

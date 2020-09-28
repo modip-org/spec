@@ -14,7 +14,7 @@ Fields are stored inside the JSON metadata of a Project. Fields that are optiona
 
 ### `schemaVersion`
 
-This field MUST be stored as an integer. It contains the version of the Format being used, to help with backwards compatibility. The current value of this at the time of writing is `1`.
+This field MUST be stored as an String. It contains the version of the Format being used, to help with backwards compatibility. The format is ALWAYS stored as a SemVer-conforming String. The current value of this at the time of writing is `1.0.0`.
 
 ---
 
@@ -210,12 +210,12 @@ The link, to be viewed in a web browser.
 
 ---
 
-### `successor` and `predecessor` (optional)
+### `successors` and `predecessors` (optional)
 
-If an older or newer version of a Project exists, but has a separate ID, these fields may be used. These fields MUST be either an Array or String representing the respective projects' IDs. If the field is an array, the Projects should be listed in chronological order from when they were first released.
+If an older or newer version of a Project exists, but has a separate ID, these fields may be used. These fields MUST be an Array representing the respective projects' IDs. The Projects should be listed in chronological order from when they were first released.
 
 ```json
-"successor": [
+"successors": [
   "first-successor",
   "second-successor
 ]

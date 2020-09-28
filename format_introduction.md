@@ -25,3 +25,5 @@ The MODIP format is designed to be used by anyone who works with Minecraft proje
 ## Documentation
 
 Documentation on the Format specification is provided in **format_spec.md**. Standardized values can be found in **format_values.md**. Implementation tips and guides for launchers can be found in **format_implementing.md**.
+
+The current version of the MODIP Format is **1.0.0**.

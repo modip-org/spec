@@ -5,7 +5,7 @@
     "This file demonstrates an example Framework in the MODIP Format",
     "It is based off the Fabric modloader"
   ],
-  "schemaVersion": 1,
+  "schemaVersion": "1.0.0",
   "id": "framework-fabric-loader",
   "name": "Fabric Loader",
   "summary": "Short summary about Fabric.",

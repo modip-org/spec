@@ -37,10 +37,9 @@
   "properties": {
     "$schema": true,
     "schemaVersion": {
-      "type": "integer",
+      "type":        "string",
       "description": "The version of the MODIP Metadata Format.",
-      "minimum": 1,
-      "maximum": 1
+      "pattern":     "^[0-9]+(\\.[0-9]+){0,2}$"
     },
     "id": {
       "type": "string",
@@ -166,7 +165,7 @@
               },
               "members": {
                 "type": "array",
-                "description": "A list of authors that are part of this t Team.",
+                "description": "A list of authors that are part of this Team.",
                 "items": {
                   "$ref": "#/definitions/author"
                 }
@@ -203,7 +202,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "description": "An identifier for this license. Includes all SPDX identifiers, as well as ARR, MMPL, Generic-Open, and Generic-Proprietary."
+          "description": "An identifier for this license. Includes all SPDX identifiers, as well as ARR, MMPL-1.0, Generic-Open, and Generic-Proprietary."
         },
         "name": {
           "type": "string",
@@ -271,33 +270,19 @@
         }
       }
     },
-    "successor": {
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      ],
-      "description": "A successor mod ID."
+    "successors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Successor project IDs."
     },
-    "predecessor": {
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      ],
-      "description": "A predecessor mod ID."
+    "predecessors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Predecessor project IDs."
     },
     "versions": {
       "type": "array",
