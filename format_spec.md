@@ -368,19 +368,32 @@ If a launcher was trying to download the file, it would first try at `firsthosti
 
 ## Conditions
 
-Conditions allow specific fields to be applied based on certain variables. Below is an example usage of conditions, using the `environment` group and `client` and `server` options.
+Conditions allow values to be applied based on variables. Conditions can only be used on certain fields which explicitly allow them. 
 
-```json
-"required": {
-  "environment": {
-    "client": true,
-    "server": false
+The most obvious use of Conditions is for specifying client and server side mods. A modpack, for example, can use conditions to exclude client-only mods from the server. Below is a basic example of that:
+
+```jsonc
+// This would go inside a version object in a modpack
+"dependencies": {
+  {
+    // This mod is used for both client and server
+    "id": "common-mod",
+    "required": true,
+    ...
+  },
+  {
+    "id": "client-mod",
+    "allowed": {
+      "environment": {
+        "client": true,
+        "server": false
+      }
+    }, // This mod is allowed *only* on a client
+    "required": true // This mod is required for clients; for servers, it cannot be installed
   }
 }
 ```
 
 See **format_values.md** for the list of conditions and groups.
-
-Conditions CANNOT be used for fields which do not explicitly allow them.
 
 For information on how to implement conditions in a launcher, see **format_implementing.md**.

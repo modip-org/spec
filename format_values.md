@@ -66,26 +66,25 @@ Conditions can be used to provide specific information for certain users. Below 
 
 ### `environment`
 
-Refers to the Minecraft game environment
+Refers to the Minecraft game environment.
 
 ##### `client`
 
-This is clientside and not a server.
+This is client-side and not a server.
 
 #### `server`
 
-This is serverside and not a client.
+This is server-side and not a client.
 
 <br>
 
 Below is an example using the `environment` group and `client` and `server` options.
 
 ```json
-"required": {
+"allowed": {
   "environment": {
     "client": true,
     "server": false
   }
 }
-
 ```

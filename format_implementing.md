@@ -68,17 +68,25 @@ If a dependency has the `src` field, it means that at that specified URL is full
 
 ## Implementing Conditions
 
-Conditions allow fields to be changed based on certain variables. Conditions can only be present on certain fields.
+Conditions allow values of fields to be changed based on certain variables. Conditions can only be present on certain fields.
 
-Below is an example condition, for a dependency's `required` field.
+Below is an example for modpack dependencies:
 
 ```json
-"required": {
-  "environment": {
-    "client": true,
-    "server": false
+"dependencies": [
+  {
+    "id": "client-only-mod",
+    "allowed": {
+      "environment": {
+        "client": true,
+        "server": false
+      }
+    },
+    "required": true
   }
-}
+]
 ```
 
-If your launcher considers itself to be a client, the value of `required` should be true, and if your launcher considers itself a server, the value of `required` should be false.
+In the above example, if your program considers itself to be a client, then the mod should be allowed. If your program considers itself to be a server, then the mod should not be allowed to be installed (or at least without warning the user).
+
+If the criteria for `allowed` is met (your program considers itself a client), then the mod is required to be installed. If the requirement is not meant, the mod is not required and shouldn't be installed.
