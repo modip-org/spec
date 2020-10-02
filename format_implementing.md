@@ -90,3 +90,20 @@ Below is an example for modpack dependencies:
 In the above example, if your program considers itself to be a client, then the mod should be allowed. If your program considers itself to be a server, then the mod should not be allowed to be installed (or at least without warning the user).
 
 If the criteria for `allowed` is met (your program considers itself a client), then the mod is required to be installed. If the requirement is not meant, the mod is not required and shouldn't be installed.
+
+Another condition you may see often is `required`
+```json
+"dependencies": [
+  {
+    "id": "client-mod-with-optional-server",
+    "required": {
+      "environment": {
+        "client": true,
+        "server": false
+      }
+    }
+  }
+]
+```
+
+If your program considers itself a client, the mod is required. If your program considers itself a server, the mod is not required to be installed.

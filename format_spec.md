@@ -306,12 +306,11 @@ This field MUST be either an Array or String. If this field is an array, it MUST
 
 ##### `src` (optional)
 
-If not all information is listed inside a dependency object and it's metadata is not hosted on the same host which is serving metadata for the parent project, the `src` field may be used. This field MUST contain a URL. This URL MUST serve MODIP Format-compliant metadata about the required dependency. It MUST include the `versions` field.
-
-<br>
+If not all information is listed inside a dependency object and it's metadata is not hosted on the same host which is serving metadata for the parent project, the `src` field may be used. This field MUST contain a URL. This URL MUST serve MODIP Format-compliant metadata about the required dependency. It MUST include the `versions` field.  
+    
+*TODO: Change Minecraft's dependency status?*
 
 The required Minecraft Version also MUST be stored as a dependency. It's `id` value MUST be set to `minecraft`. It also MUST not contain the `required` field, as Minecraft is not an optional component.
-
 A dependencies implementation guide for launchers is available in **format_implementing.md**.
 
 ---
