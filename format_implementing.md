@@ -10,6 +10,7 @@ The MODIP Format Specification allows the usage of HTML in certain fields, such 
 
 ### Disallowed Tags
 
+**TODO: Blacklists are a bad idea. Needs to be changed to whitelist.**
 You should never attempt to render any of the following tags: `script`, `style`, `link`, `title`, `button`, `form`, `input`, `meta`, `option`, `textarea`, and `select`.
 
 ### iframes
@@ -44,11 +45,6 @@ A: If for whatever reason you do not want to render HTML, then yes, the best met
 Frameworks also exist as MODIP Format Projects. It's important for launchers to understand the Project metadata and install frameworks as needed.
 
 Framework IDs MUST be prefixed with `framework-`, so launchers can tell if a project is a Framework.
-For frameworks with the installation method set to `versionJsonInstall`, launchers should read the version JSON metadata specified in a file with `rel` set to `versionJson`. An example of a modloader using `versionJsonInstall` would be Fabric.
-
-Launchers may deviate from or completely ignore the value set in the installation method for the version.
-
-The `runForgeInstaller` installation method exists to tell launchers that this contains a Forge installer. Launchers may choose to use their own method of installation if they would like.
 
 ---
 
@@ -61,6 +57,8 @@ For the purposes of this section, the term "the host" refers to the service a la
 If a dependency's ID is `minecraft`, then it's the required Minecraft version. Implementation of where to obtain Minecraft metadata is up to the developer of a launcher. Launchers may download metadata from the host, from Mojang directly, or from another service.
 
 If a dependency's ID is not `minecraft`, then it's a required project.
+
+**TODO: Special case IDs may be removed.**
 
 If a dependency has the `src` field, it means that at that specified URL is full metadata about this dependency. Launchers should check here first if it's specified. If the URL does not serve a suitable result, or there is no `src` field, launchers should then ask the host of the parent for a project matching the same ID. If at this point the launcher still hasn't found any metadata for the project, the launcher may choose to ask another host that it knows of for a project with the same ID, or it may choose to fail and warn the user.
 

@@ -32,7 +32,7 @@ The name of a Project. This name MUST be a human readable name and SHOULD NOT co
 
 ### `summary` (optional)
 
-A short, one sentence summary of the Project. Any form of rich text such as HTML CANNOT be used.
+A short, one sentence summary of the Project. Any form of rich text such as HTML CANNOT be used. This may be displayed in search results, for example.
 
 ---
 
@@ -335,8 +335,6 @@ The relation of this file. Possible values for this field are available in **for
 ##### `dependencies` (optional)
 
 This field MUST conform to the same specification as the Version's dependencies. BOTH a File and Version can have dependencies.
-
-It is RECOMMENDED to define Framework/Modloader dependencies as File Dependencies and NOT Version Dependencies. When downloading a file, launchers SHOULD pay attention to both the Version and FIle dependencies.
 
 ##### `installation`
 

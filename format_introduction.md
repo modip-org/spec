@@ -14,7 +14,7 @@ The Format stores information about projects such as their description, authors,
 
 ## Users of the Format
 
-The MODIP format is designed to be used by anyone who works with Minecraft projects. Examples include:
+The MODIP format is used by:
 
 - Hosts, such as Diluv, Modrinth, and CurseForge
 - Launchers, such as MultiMC and GDLauncher

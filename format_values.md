@@ -25,7 +25,7 @@ This is a list of standardized values that can be present in the `tags` field. I
 - `mod`
 - `modpack`
 - `resourcepack`
-- `texturepack` (note: use `resourcepack` for packs that support it)
+- `texturepack`
 - `datapack`
 - `world`
 - `framework`
