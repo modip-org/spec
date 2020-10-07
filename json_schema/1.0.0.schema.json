@@ -3,7 +3,6 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "MODIP Metadata Format version 1.0.0",
   "type": "object",
-  "additionalProperties": false,
   "definitions": {
     "author": {
       "type": "object",
@@ -132,11 +131,18 @@
             "other"
           ]
         },
-        "directory": true,
-        "versionJson": true
+        "directory": {
+          "type": "string",
+          "description": "The directory to place this in."
+        },
+        "versionJson": {
+          "type": "object",
+          "description": "The library as written in version JSON format."
+        }
       },
       "oneOf": [
         {
+          "additionalProperties": false,
           "properties": {
             "method": {
               "const": "placeInDirectory"
@@ -151,6 +157,7 @@
           ]
         },
         {
+          "additionalProperties": false,
           "properties": {
             "method": {
               "const": "classpathLibrary"
@@ -162,6 +169,7 @@
           }
         },
         {
+          "additionalProperties": false,
           "properties": {
             "method": {
               "enum": [
@@ -171,9 +179,7 @@
                 "jarMod",
                 "other"
               ]
-            },
-            "directory": false,
-            "versionJson": false
+            }
           }
         }
       ]
@@ -185,7 +191,6 @@
     "name"
   ],
   "properties": {
-    "$schema": true,
     "schemaVersion": {
       "type": "string",
       "description": "The version of the MODIP Metadata Format.",
@@ -252,8 +257,14 @@
         },
         "oneOf": [
           {
-            "properties": {
-              "embed": false
+            "dependencies": {
+              "src": {
+                "not": {
+                  "required": [
+                    "embed"
+                  ]
+                }
+              }
             },
             "required": [
               "src",
@@ -262,9 +273,23 @@
             ]
           },
           {
-            "properties": {
-              "sha256": false,
-              "src": false
+            "dependencies": {
+              "embed": {
+                "not": {
+                  "anyOf": [
+                    {
+                      "required": [
+                        "sha256"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "src"
+                      ]
+                    }
+                  ]
+                }
+              }
             },
             "required": [
               "rel",

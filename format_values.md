@@ -49,8 +49,6 @@ Files can have the following `rel` values:
 
 Generic Installers exist to allow Frameworks to be stored as Projects. If a Framework offers an installer for both Windows (e.g. .exe) and a generic jar-based installer, they should be stored as separate files with the respective `installerWin` and `installerGeneric` relations.
 
-The `compressedOverrides` relation allows for modpacks to be defined in the format. After downloading all required mods/projects for a modpack, launchers should download the file marked with `compressedOverrides`, decompress it, and copy it's contents to the Minecraft game directory. (TODO: move this information to Installation PR?)
-
 There are also some standard Framework-specific `rel` values:
 
 - `forgeUniversal`
@@ -88,3 +86,12 @@ Below is an example using the `environment` group and `client` and `server` opti
   }
 }
 ```
+
+## Banned Characters
+The following characters cannot be present in any fields, unless exempted.
+- 0+0000 (NULL)
+- U+0007 (BELL)
+- U+000A (LINE FEED)
+- U+0085 (NEXT LINE)
+
+**TODO: I am bad at this. Need a better list.**

@@ -8,7 +8,7 @@ A format-compliant example is provided in **examples/format_example.modip.json**
 
 ## Fields
 
-Fields are stored inside the JSON metadata of a Project. Fields that are optional will be marked as such. All fields are stored as a String value unless stated otherwise. Below is a complete list of all fields available for the MODIP Format, grouped into categories.
+Fields are stored inside the JSON metadata of a Project. Fields that are optional will be marked as such. All fields are stored as a String value unless stated otherwise. String fields are subject to the `Banned Characters` list located in **format_values.md** unless otherwise noted. Below is a complete list of all fields available for the MODIP Format, grouped into categories.
 
 ## General Project Information
 
@@ -21,6 +21,16 @@ This field MUST be stored as an String. It contains the version of the Format be
 ### `id`
 
 The ID of the Project. There is no standard or required format on how to store an ID, other than it CANNOT include spaces. It may be a slug, UUID, random number, or other method of storing IDs. It is RECOMMENDED that IDs are not tied to the name of a project.
+
+This field CAN ONLY contain the following characters:
+- Lowercase and capital letters from A through Z
+- Numbers 0 through 9
+- Underscores (Unicode U+005F)
+- Hyphen (Unicode U+002D)
+
+Any other characters CANNOT be used, including special characters like newlines and spaces.
+
+**TODO: Limited character set - good or bad?**
 
 ---
 
@@ -40,7 +50,7 @@ A short, one sentence summary of the Project. Any form of rich text such as HTML
 
 ### `description` (optional)
 
-A long description of the project. HTML MAY be used. Markdown or other forms of rich text CANNOT be used. See **format_implementing.md** for information on how launchers should implement HTML, as well as forbidden elements and other guidelines.
+A long description of the project. HTML MAY be used. Markdown or other forms of rich text CANNOT be used. See **format_implementing.md** for information on how launchers should implement HTML, as well as forbidden elements and other guidelines. This may contain new line characters.
 
 ---
 
@@ -266,8 +276,6 @@ Launchers can use this field to compare different versions. However, because man
 
 The release date of this version. It MUST be stored as an ISO-8601 conforming String. This MUST include UTC time at the end. A valid example is `2020-01-01T12:00:00Z`. This example date is the 1st of January, 2020 at 12:00:00 UTC. Spaces and time zone offsets (e.g. `+01:00`) CANNOT be used. The `Z` at the end of the string MUST be included and it MUST be capitalized. The `T` separating the date and time MUST be included and it MUST be capitalized. Other values, such as `2020-W32` are NOT allowed. The ONLY allowed format is the one demonstrated in the example.
 
-If the time of a release is unknown, it SHOULD default to `12:00:00Z`. If the date is completely unknown or hosts do not wish to provide inaccurate data, the value `unknown` CAN be passed.
-
 ---
 
 ### `changelog`
@@ -278,8 +286,7 @@ The changelog of this version. The changelog MAY contain HTML. It follows the sa
 
 ### `allowed` (optional)
 
-Whether or not this version is allowed. **MUST be a condition.**
-
+Whether or not this version is allowed to be installed, based on the condition. **This field MUST be a condition, with a boolean value**
 ---
 
 ### `dependencies` (optional)
@@ -308,7 +315,7 @@ This field MUST be either an Array or String. If this field is an array, it MUST
 
 If not all information is listed inside a dependency object and it's metadata is not hosted on the same host which is serving metadata for the parent project, the `src` field may be used. This field MUST contain a URL. This URL MUST serve MODIP Format-compliant metadata about the required dependency. It MUST include the `versions` field.  
     
-*TODO: Change Minecraft's dependency status?*
+*TODO: Change Minecraft's dependency status? Remove special-case dependencies?*
 
 The required Minecraft Version also MUST be stored as a dependency. It's `id` value MUST be set to `minecraft`. It also MUST not contain the `required` field, as Minecraft is not an optional component.
 A dependencies implementation guide for launchers is available in **format_implementing.md**.
