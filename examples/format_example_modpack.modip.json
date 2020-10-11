@@ -173,12 +173,6 @@
           "downloads": [
             "https://example.com/download/oevrrides.zip"
           ],
-          "allowed": {
-            "environment": {
-              "client": false,
-              "server": true
-            }
-          },
           "_comment": [
             "This file is only allowed on a server"
           ]

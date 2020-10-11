@@ -134,7 +134,6 @@
       ],
       "files": [
         {
-          "rel": "primary",
           "name": "1.0.0-fabric.jar",
           "sha256": "< sum goes here >",
           "dependencies": [
@@ -149,7 +148,6 @@
           ]
         },
         {
-          "rel": "primary",
           "name": "1.0.0-forge.jar",
           "sha256": "< sum goes here >",
           "dependencies": [
