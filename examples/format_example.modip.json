@@ -110,6 +110,28 @@
           ]
         }
       ],
+      "installation": [
+        {
+          "type": "framework_fork",
+          "framework_steps": {
+            "framework-fabric-loader": [
+              {
+                "type": "placeInDirectory",
+                "directory": "mods",
+                "file": "1.0.0-fabric.jar"
+              }
+            ],
+            "framework-forge": [
+              {
+                "type": "placeInDirectory",
+                "directory": "mods",
+                "file": "1.0.0-forge.jar"
+              }
+            ]
+          },
+          "preferred": "framework-fabric-loader"
+        }
+      ],
       "files": [
         {
           "rel": "primary",
@@ -122,10 +144,6 @@
               "version": ">= 0.9.0"
             }
           ],
-          "installation": {
-            "method": "placeInDirectory",
-            "directory": "mods"
-          },
           "downloads": [
             "https://example.com/download/1.0.0-fabric.jar"
           ]
@@ -141,10 +159,6 @@
               "version": ">= 32.0.106"
             }
           ],
-          "installation": {
-            "method": "placeInDirectory",
-            "directory": "mods"
-          },
           "downloads": [
             "https://example.com/download/1.0.0-forge.jar"
           ]

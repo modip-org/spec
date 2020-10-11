@@ -133,12 +133,27 @@
           "version": "6.2.1"
         }
       ],
-      "installation": {
-        "method": "instanceInstall"
-      },
+      "installation": [
+        {
+          "type": "client_server_fork",
+          "client_steps": [
+            {
+              "type": "extractZip",
+              "directory": ".",
+              "file": "overrides.zip"
+            }
+          ],
+          "server_steps": [
+            {
+              "type": "extractZip",
+              "directory": ".",
+              "file": "overrides-server.zip"
+            }
+          ]
+        }
+      ],
       "files": [
         {
-          "rel": "compressedOverrides",
           "name": "overrides.zip",
           "sha256": "< sum goes here >",
           "downloads": [
@@ -153,7 +168,6 @@
           ]
         },
         {
-          "rel": "compressedOverrides",
           "name": "overrides-server.zip",
           "sha256": "< sum goes here >",
           "downloads": [
