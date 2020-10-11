@@ -1,0 +1,155 @@
+{
+  "$schema": "../json_schema/1.0.0.schema.json",
+  "schemaVersion": "1.0.0",
+  "id": "111111-111111-111111-111111-111111",
+  "name": "Example Project",
+  "summary": "This is a short, one-sentence summary of the Example Project.",
+  "description": "This is a long description describing the project. <b>HTML</b> can optionally be used.",
+  "media": [
+    {
+      "rel": "icon",
+      "type": "image",
+      "src": "https://example.com/example.png",
+      "sha256": "< sum goes here >"
+    },
+    {
+      "rel": "gallery",
+      "type": "video",
+      "embed": "https://youtube.com/embed...",
+      "caption": "This is an example embed."
+    },
+    {
+      "rel": "gallery",
+      "type": "video",
+      "src": "https://example.com/video.webm",
+      "caption": "This is an example direct video link.",
+      "sha256": "< sum goes here >"
+    },
+    {
+      "rel": "gallery",
+      "type": "image",
+      "src": "https://example.com/image.png",
+      "caption": "This is an example image."
+    }
+  ],
+  "authors": [
+    {
+      "team": true,
+      "id": "111111-111111-111111-111111-111111",
+      "name": "MODIP Contributors",
+      "uri": "https://github.com/modip-org",
+      "members": [
+        {
+          "id": "111111-111111-111111-111111-111111",
+          "name": "Example MODIP Member",
+          "uri": "https://example.com/example-webpage"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "mod"
+  ],
+  "license": {
+    "id": "MIT",
+    "name": "MIT",
+    "uri": "https://opensource.org/licenses/MIT",
+    "modpackUsage": "alwaysAllow"
+  },
+  "links": [
+    {
+      "rel": [
+        "x-discord",
+        "community"
+      ],
+      "name": "Project Discord",
+      "uri": "https://discord.gg/example"
+    },
+    {
+      "rel": "scm",
+      "name": "Project GitHub",
+      "uri": "https://github.com/modip-org/exampleproject"
+    }
+  ],
+  "successors": [
+    {
+      "id": "successor-mod",
+      "src": "https://example.com/external-source.modip.json"
+    },
+    {
+      "id": "other-successor-mod"
+    }
+  ],
+  "predecessors": [
+    {
+      "id": "predecessor-mod"
+    }
+  ],
+  "versions": [
+    {
+      "id": "1.0.0",
+      "name": "Release 1.0.0",
+      "semver": "1.0.0",
+      "releaseDate": "2020-04-08T12:00:00Z",
+      "changelog": "Example changelog goes here... <b>HTML</b> may be used.",
+      "dependencies": [
+        {
+          "id": "minecraft",
+          "version": [
+            "1.16.1",
+            "1.16"
+          ]
+        },
+        {
+          "src": "https://example.com/external-modip-metadata.modip.json",
+          "id": "example-library-mod",
+          "required": true,
+          "version": [
+            "1.0.0",
+            "1.0.1"
+          ]
+        }
+      ],
+      "files": [
+        {
+          "rel": "primary",
+          "name": "1.0.0-fabric.jar",
+          "sha256": "< sum goes here >",
+          "dependencies": [
+            {
+              "id": "framework-fabric-loader",
+              "required": true,
+              "version": ">= 0.9.0"
+            }
+          ],
+          "installation": {
+            "method": "placeInDirectory",
+            "directory": "mods"
+          },
+          "downloads": [
+            "https://example.com/download/1.0.0-fabric.jar"
+          ]
+        },
+        {
+          "rel": "primary",
+          "name": "1.0.0-forge.jar",
+          "sha256": "< sum goes here >",
+          "dependencies": [
+            {
+              "id": "framework-forge",
+              "required": true,
+              "version": ">= 32.0.106"
+            }
+          ],
+          "installation": {
+            "method": "placeInDirectory",
+            "directory": "mods"
+          },
+          "downloads": [
+            "https://example.com/download/1.0.0-forge.jar"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "$schema": "../json_schema/1.0.0.schema.json",
+  "_comment": [
+    "The '_comment' field is non-standard and only exists for explanation purposes",
+    "This file demonstrates an example Framework in the MODIP Format",
+    "It is based off the Fabric modloader"
+  ],
+  "schemaVersion": "1.0.0",
+  "id": "framework-fabric-loader",
+  "name": "Fabric Loader",
+  "summary": "Short summary about Fabric.",
+  "description": "Long description about Fabric.",
+  "media": [
+    {
+      "rel": "icon",
+      "type": "image",
+      "src": "https://example.com/fabric-icon.png",
+      "sha256": "< sum goes here >"
+    }
+  ],
+  "authors": [
+    {
+      "team": true,
+      "id": "111111-111111-111111-111111-111111",
+      "name": "Fabric Contributors",
+      "uri": "https://github.com/fabricmc",
+      "members": [
+        {
+          "id": "111111-111111-111111-111111-111111",
+          "name": "Example Fabric Contributor",
+          "uri": "https://example.com/example-webpage"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "framework"
+  ],
+  "license": {
+    "id": "Apache-2.0",
+    "name": "Apache License 2.0",
+    "uri": "https://www.apache.org/licenses/LICENSE-2.0.html",
+    "modpackUsage": "alwaysAllow"
+  },
+  "links": [
+    {
+      "rel": "scm",
+      "name": "Fabric Loader GitHub",
+      "uri": "https://github.com/fabricmc/fabric-loader"
+    }
+  ],
+  "versions": [
+    {
+      "id": "0.9.0+build.204",
+      "name": "Release 0.9.0+build.204",
+      "releaseDate": "2020-08-05T20:59:00Z",
+      "changelog": "Fabric version changelog goes here...",
+      "installation": {
+        "method": "versionJsonInstall"
+      },
+      "dependencies": [
+        {
+          "id": "minecraft",
+          "version": "1.16.1"
+        },
+        {
+          "id": "framework-fabric-intermediary",
+          "version": "1.16.1",
+          "required": true
+        }
+      ],
+      "files": [
+        {
+          "rel": "versionJson",
+          "name": "profile.json",
+          "sha256": "< sum goes here >",
+          "downloads": [
+            "https://meta.fabricmc.net/v2/versions/loader/1.16.1/0.9.0+build.204/profile/json"
+          ]
+        }
+      ]
+    }
+  ]
+}
