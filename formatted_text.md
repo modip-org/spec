@@ -55,7 +55,7 @@ Allowed in inline contexts.
 * `<h1>...</h1>` up to h6 - heading levels
 * `<ul>...</ul>` - bullet list, list items are in `<li>...</li>`
 * `<ol>...</ol>` - numbered list, list items are in `<li>...</li>`
-* `<fold title="Recipes">...</fold>` - a foldable content section (a "spoiler"). `title` is optional - if omitted, it may default to something like "click here to open" (viewer-dependent).
+* `<details><summary>Recipes</summary>...</details>` - a foldable content section (a "spoiler"). `summary` is optional - if omitted, it may default to something like "click here to open" (viewer-dependent). Note: `summary` must be the first child of `details` - there must not even be whitespace in between.
 * Whitespace - double-newline should be similar to HTML's `<p>` and single newline should be similar to HTML's `<br>`
 
 (TODO: should we have explicit paragraph and newline tags?)
