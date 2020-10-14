@@ -287,6 +287,33 @@ The changelog of this version. The changelog MAY contain HTML. It follows the sa
 ### `allowed` (optional)
 
 Whether or not this version is allowed to be installed, based on the condition. **This field MUST be a condition, with a boolean value**
+
+---
+
+### `game`
+
+The version of the game that this project version supports or requires. It contains the following fields:
+
+##### `minimum`
+
+The minimum version of the game required to use this project. This should be treated as a strict requirement - any version below, and this project will not work at all.
+
+##### `maximum` (optional)
+
+The maximum supported version of the game. The project may either not work at all on this version, or a significant portion of functionality is broken that the project is considered unusable.
+
+##### `breaks` (optional)
+
+Versions of the game that this mod is not compatible for. These MUST fall within the minimum and maximum version. This MUST be an Array.
+
+### FAQ
+
+**Q: Mojang broke my mod in a new version! What should I do?**  
+A: Feel free to modify your metadata, to set `maximum` to the version that in breaks in. If `maximum` isn't usable (e.g. it works in 1.16.3 but not in 1.16.2), then use `breaks`.
+
+**Q: I don't know if my mod will work in the next release. How should I specify that?**  
+A: Generally, the last number in a version string (e.g. 1.16 **.3**) is usually compatible with all numbers the same major version (1.16.x), with some few exceptions.
+
 ---
 
 ### `dependencies` (optional)
@@ -314,10 +341,7 @@ This field MUST be either an Array or String. If this field is an array, it MUST
 ##### `src` (optional)
 
 If not all information is listed inside a dependency object and it's metadata is not hosted on the same host which is serving metadata for the parent project, the `src` field may be used. This field MUST contain a URL. This URL MUST serve MODIP Format-compliant metadata about the required dependency. It MUST include the `versions` field.  
-    
-*TODO: Change Minecraft's dependency status? Remove special-case dependencies?*
 
-The required Minecraft Version also MUST be stored as a dependency. It's `id` value MUST be set to `minecraft`. It also MUST not contain the `required` field, as Minecraft is not an optional component.
 A dependencies implementation guide for launchers is available in **format_implementing.md**.
 
 ---

@@ -54,12 +54,6 @@ When a user downloads a project using a launcher, it's important to download its
 
 For the purposes of this section, the term "the host" refers to the service a launcher is using in order to download projects, such as Diluv or Modrinth.
 
-If a dependency's ID is `minecraft`, then it's the required Minecraft version. Implementation of where to obtain Minecraft metadata is up to the developer of a launcher. Launchers may download metadata from the host, from Mojang directly, or from another service.
-
-If a dependency's ID is not `minecraft`, then it's a required project.
-
-**TODO: Special case IDs may be removed.**
-
 If a dependency has the `src` field, it means that at that specified URL is full metadata about this dependency. Launchers should check here first if it's specified. If the URL does not serve a suitable result, or there is no `src` field, launchers should then ask the host of the parent for a project matching the same ID. If at this point the launcher still hasn't found any metadata for the project, the launcher may choose to ask another host that it knows of for a project with the same ID, or it may choose to fail and warn the user.
 
 ---
@@ -105,3 +99,37 @@ Another condition you may see often is `required`
 ```
 
 If your program considers itself a client, the mod is required. If your program considers itself a server, the mod is not required to be installed.
+
+---
+
+## Implementing `game`
+When parsing a version of a project, the `game` field specifies which Minecraft version it's compatible with.
+
+Unfortunately, Minecraft doesn't follow SemVer, so it's not very easy to list supported versions. Fortunately, the current system of the `game` field provides the ability to list supported versions in the majority of cases.
+
+### `minimum`
+This field should be taken strictly. Any version before this version, the project will simply not function at all.
+
+```json
+"game": {
+  "minimum": "1.16.3"
+}
+```
+In the above example, the project will not work at all on any version prior to 1.16.3, including 1.16.2 or 1.16.1
+
+### `maximum`
+This field should not be taken as strict as `minimum`. Authors can't know what the future holds. It's recommended for authors to put the next major version (e.g. for a 1.16.2 mod, put `1.17`) in this field, if they decide to have the `maximum` field.
+
+For launchers, there are two routes you can go - either refuse to install mods for which the maximum version check fails, or warn the user about the problem. 
+
+### `breaks`
+These are versions where it's known that the mod doesn't work. You can take this strictly.
+
+### FAQ
+**Q: Where do I get Minecraft version metadata, if it's not specified anywhere?**  
+A: Most launchers will already have this. If not, the recommended place is Mojang's official metadata, available at http://launchermeta.mojang.com/mc/game/version_manifest.json
+
+**Q: How do I compare Minecraft versions?**
+A: You can compare them similar to you can compare SemVer. For example, 1.17.0 is greater than 1.16.0, and 1.16.1 is greater than 1.16.0.
+
+*TODO: old versions that aren't the 1.xx.x format*
