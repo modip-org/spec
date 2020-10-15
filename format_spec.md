@@ -302,14 +302,14 @@ The minimum version of the game required to use this project. This should be tre
 
 The maximum supported version of the game. The project may either not work at all on this version, or a significant portion of functionality is broken that the project is considered unusable.
 
-##### `breaks` (optional)
+##### `excludes` (optional)
 
 Versions of the game that this mod is not compatible for. These MUST fall within the minimum and maximum version. This MUST be an Array.
 
 ### FAQ
 
 **Q: Mojang broke my mod in a new version! What should I do?**  
-A: Feel free to modify your metadata, to set `maximum` to the version that in breaks in. If `maximum` isn't usable (e.g. it works in 1.16.3 but not in 1.16.2), then use `breaks`.
+A: Feel free to modify your metadata, to set `maximum` to the version that in breaks in. If `maximum` isn't usable (e.g. it works in 1.16.3 but not in 1.16.2), then use `exclude`.
 
 **Q: I don't know if my mod will work in the next release. How should I specify that?**  
 A: Generally, the last number in a version string (e.g. 1.16 **.3**) is usually compatible with all numbers the same major version (1.16.x), with some few exceptions.

@@ -122,7 +122,7 @@ This field should not be taken as strict as `minimum`. Authors can't know what t
 
 For launchers, there are two routes you can go - either refuse to install mods for which the maximum version check fails, or warn the user about the problem. 
 
-### `breaks`
+### `excludes`
 These are versions where it's known that the mod doesn't work. You can take this strictly.
 
 ### FAQ
