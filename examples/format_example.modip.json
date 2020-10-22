@@ -93,12 +93,7 @@
       "releaseDate": "2020-04-08T12:00:00Z",
       "changelog": "Example changelog goes here... <b>HTML</b> may be used.",
       "game": {
-        "_comment": "This example mod only works on 1.16, 1.16.2, and 1.16.3 - it will not work on 1.16.1",
-        "minimum": "1.16",
-        "maximum": "1.16.3",
-        "excludes": [
-          "1.16.1"
-        ]
+        "minimum": "1.16"
       },
       "dependencies": [
         {
