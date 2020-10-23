@@ -107,29 +107,15 @@ When parsing a version of a project, the `game` field specifies which Minecraft 
 
 Unfortunately, Minecraft doesn't follow SemVer, so it's not very easy to list supported versions. Fortunately, the current system of the `game` field provides the ability to list supported versions in the majority of cases.
 
-### `minimum`
-This field should be taken strictly. Any version before this version, the project will simply not function at all.
+### `compat`
 
-```json
-"game": {
-  "minimum": "1.16.3"
-}
-```
-In the above example, the project will not work at all on any version prior to 1.16.3, including 1.16.2 or 1.16.1
-
-### `maximum`
-This field should not be taken as strict as `minimum`. Authors can't know what the future holds. It's recommended for authors to put the next major version (e.g. for a 1.16.2 mod, put `1.17`) in this field, if they decide to have the `maximum` field.
-
-For launchers, there are two routes you can go - either refuse to install mods for which the maximum version check fails, or warn the user about the problem. 
-
-### `excludes`
-These are versions where it's known that the mod doesn't work. You can take this strictly.
+*TODO: Compatibility database*
 
 ### FAQ
 **Q: Where do I get Minecraft version metadata, if it's not specified anywhere?**  
-A: Most launchers will already have this. If not, the recommended place is Mojang's official metadata, available at http://launchermeta.mojang.com/mc/game/version_manifest.json
+A: Get it from Mojang at http://launchermeta.mojang.com/mc/game/version_manifest_v2.json
 
 **Q: How do I compare Minecraft versions?**
-A: You can compare them similar to you can compare SemVer. For example, 1.17.0 is greater than 1.16.0, and 1.16.1 is greater than 1.16.0.
+*TODO: Finish this*
 
 *TODO: old versions that aren't the 1.xx.x format*

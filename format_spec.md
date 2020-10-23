@@ -298,13 +298,9 @@ The version of the game that this project version supports or requires. It conta
 
 The minimum version of the game required to use this project. This should be treated as a strict requirement - any version below, and this project will not work at all.
 
-##### `maximum` (optional)
+##### `compat` (optional)
 
-The maximum supported version of the game. The project may either not work at all on this version, or a significant portion of functionality is broken that the project is considered unusable.
-
-##### `excludes` (optional)
-
-Versions of the game that this mod is not compatible for. These MUST fall within the minimum and maximum version. This MUST be an Array.
+*TODO: Compatibility database*
 
 ### FAQ
 
