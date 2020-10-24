@@ -105,17 +105,35 @@ If your program considers itself a client, the mod is required. If your program 
 ## Implementing `game`
 When parsing a version of a project, the `game` field specifies which Minecraft version it's compatible with.
 
-Unfortunately, Minecraft doesn't follow SemVer, so it's not very easy to list supported versions. Fortunately, the current system of the `game` field provides the ability to list supported versions in the majority of cases.
-
 ### `compat`
+The compatibility database is how you can guess or be fully sure if projects are compatible. Launchers must have their own default compatibility database in order to be fully MODIP spec compliant. A default database that is recommended for all launchers to use is provided at [TODO: add link].
 
-*TODO: Compatibility database*
+When you want to check version compatibility, start at the version specified in the `minimum` field. Any versions released before the `minimum` version was released should be assumed fully incompatible. From there, work your way on up through newer versions until you reach the version you want to compare to. Below is an example compatibility database that we'll use to describe how to compare versions properly:
+```json
+{
+  "compatibility": {
+    "1.16.3": "probably",
+    "1.16.2": "maybe",
+    "1.16.1": "probably",
+    "1.16.0": "definitely-not"
+  }
+}
+```
+Let's say the project the user wants to install has it's `minimum` set to `1.16.0`, and they're trying to install it to an instance running `1.16.3`. We'll start at 1.16.0, and we can ignore the field value for it, as that relates to the previous version which isn't relevant here. 
+
+We'll move on up one version at a time. The next version happens to be `1.16.1`. The rating for that is `probably`, so the current assumed score for this project is `probably`. Next is 1.16.2, which has a score of `maybe`. Because `maybe` is a worse score than `probably`, it's become the current assumed rating. After 1.16.2 comes 1.16.3, which is `probably`, but that won't be set to the current assumed score because it's better than the current one (`probably`).
+
+After processing that, our assumed compatibility score for this project is `maybe`. It is up to you how to display this information to users. The recommended way for a `maybe` score is to display a warning that it might be incompatible.
 
 ### FAQ
 **Q: Where do I get Minecraft version metadata, if it's not specified anywhere?**  
 A: Get it from Mojang at http://launchermeta.mojang.com/mc/game/version_manifest_v2.json
 
 **Q: How do I compare Minecraft versions?**
-*TODO: Finish this*
+A: Compare using release dates. Use the `releaseTime` field in the Mojang version manifest specifically. It may sound counterintuitive, when it's easy to compare versions like 1.16.1 and 1.16.2 together, but it lets you compare snapshots and old versions easily.
 
-*TODO: old versions that aren't the 1.xx.x format*
+**Q: Do I have to include snapshots in compatibility databases?**  
+A: Currently, yes.
+
+**Q: What about future versions that aren't specified in the database?**  
+A: The best is to assume `maybe`.

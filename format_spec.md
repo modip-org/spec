@@ -300,15 +300,35 @@ The minimum version of the game required to use this project. This should be tre
 
 ##### `compat` (optional)
 
-*TODO: Compatibility database*
+This is how you define compatibility between different Minecraft versions. This field is optional, as launchers should include their own default compatibility database.
 
-### FAQ
+This field is an object that contains each version of Minecraft along with their compatibility score. Any version below the version specified in the `minimum` field should be automatically assumed incompatible, so you don't need to include anything less than that (e.g. if your `minimum` field is set to `1.16.0`, you don't need to include compatibility info for 1.15).
 
-**Q: Mojang broke my mod in a new version! What should I do?**  
-A: Feel free to modify your metadata, to set `maximum` to the version that in breaks in. If `maximum` isn't usable (e.g. it works in 1.16.3 but not in 1.16.2), then use `exclude`.
+The following compatibility scores are available:
+`"definitely"` - The project has been tested, and works on the version.
+`"probably" - The project will probably work.
+`"maybe"` - The project may or may not work.
+`"not-likely"` - The project is not likely to work on this version.
+`"definitely-not"` - The project has been confirmed to not work on this version.
 
-**Q: I don't know if my mod will work in the next release. How should I specify that?**  
-A: Generally, the last number in a version string (e.g. 1.16 **.3**) is usually compatible with all numbers the same major version (1.16.x), with some few exceptions.
+Below is an example `compat` field value:
+
+```json
+"compat": {
+  "1.16.4": "probably",
+  "1.16.3": "probably",
+  "1.16.2": "maybe",
+  "1.16.1": "probably",
+  "1.16.0": "not-likely",
+  "1.15.2": "probably",
+  "1.15.1": "probably",
+  "1.15.0": "not-likely"
+}
+```
+
+Each score refers to how likely the compatibility is between it's version and the previous version. For example, if you wanted to find out if a 1.15 mod is compatible with 1.16, you would start at 1.15.0, and move your way up until you hit 1.16.0.
+
+Scores are combined to the worst possible value. If for example, on your way to 1.16 you reach a version with a score of `not-likely`, then you can assume all versions after that one are not likely to work.
 
 ---
 
