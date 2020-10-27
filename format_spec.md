@@ -42,7 +42,7 @@ The name of a Project. This name MUST be a human readable name and SHOULD NOT co
 
 ### `summary` (optional)
 
-A short, one sentence summary of the Project. Any form of rich text such as HTML CANNOT be used. This may be displayed in search results, for example.
+A short, one sentence summary of the Project. Formatted Text CANNOT be used. This may be displayed in search results, for example.
 
 ---
 
@@ -50,7 +50,7 @@ A short, one sentence summary of the Project. Any form of rich text such as HTML
 
 ### `description` (optional)
 
-A long description of the project. HTML MAY be used. Markdown or other forms of rich text CANNOT be used. See **format_implementing.md** for information on how launchers should implement HTML, as well as forbidden elements and other guidelines. This may contain new line characters.
+A long description of the project. Formatted Text MAY be used.
 
 ---
 
@@ -93,7 +93,7 @@ Base64 encoded images, which are typically prefixed with `data:base64` are NOT R
 
 ##### `caption` (optional)
 
-An optional string which can be displayed as a caption for the current Media Item. Any form of rich text such as HTML CANNOT be used. `caption` CANNOT be present when `rel` is set to `icon`.
+An optional string which can be displayed as a caption for the current Media Item. Formatted Text CANNOT be used. `caption` CANNOT be present when `rel` is set to `icon`.
 
 ##### `sha256` (optional)
 
@@ -280,7 +280,7 @@ The release date of this version. It MUST be stored as an ISO-8601 conforming St
 
 ### `changelog`
 
-The changelog of this version. The changelog MAY contain HTML. It follows the same rules as `description` for what is allowed.
+The changelog of this version. The changelog MAY contain Formatted Text. It follows the same rules as `description` for what is allowed.
 
 ---
 

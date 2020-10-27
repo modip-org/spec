@@ -7,7 +7,7 @@
   "id": "111111-111111-111111-111111-111111",
   "name": "Example Modpack",
   "summary": "This is a short, one-sentence summary of the Example Modpack.",
-  "description": "This is a long description describing the modpack. <b>HTML</b> can optionally be used.",
+  "description": "This is a long description describing the modpack. <b>Formatted Text</b> can optionally be used.",
   "media": [
     {
       "rel": "icon",
@@ -75,7 +75,7 @@
       "name": "Release 1.0.0",
       "semver": "1.0.0",
       "releaseDate": "2020-04-08T12:00:00Z",
-      "changelog": "Example changelog goes here... <b>HTML</b> may be used.",
+      "changelog": "Example changelog goes here... <b>Formatted Text</b> may be used.",
       "dependencies": [
         {
           "id": "minecraft",

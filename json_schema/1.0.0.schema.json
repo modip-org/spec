@@ -206,11 +206,11 @@
     },
     "summary": {
       "type": "string",
-      "description": "A short summary of this project, without HTML."
+      "description": "A short summary of this project, without Formatted Text."
     },
     "description": {
       "type": "string",
-      "description": "A long description of this project. May contain HTML."
+      "description": "A long description of this project. May contain Formatted Text."
     },
     "media": {
       "type": "array",
@@ -243,7 +243,7 @@
           },
           "caption": {
             "type": "string",
-            "description": "A caption for this Media Item. Cannot contain HTML."
+            "description": "A caption for this Media Item. Cannot contain Formatted Text."
           },
           "sha256": {
             "type": "string",
@@ -494,7 +494,7 @@
           },
           "changelog": {
             "type": "string",
-            "description": "A changelog for this version. May contain HTML."
+            "description": "A changelog for this version. May contain Formatted Text."
           },
           "dependencies": {
             "type": "array",
