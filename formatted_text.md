@@ -1,11 +1,11 @@
-# Formatted text
+# Formatted Text
 
 In various fields of the index, authors may write formatted text.
 
 For best interoperability and simplicity, we use an XML-based syntax which is similar to a subset of HTML.
 
 Motivating example:
-```
+```xml
 This is an <b>example</b> mod. The word "<b>example</b>" is written in bold.
 
 <h1>Blocks in my mod</h1>
