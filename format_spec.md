@@ -313,9 +313,9 @@ This field MUST be either an Array or String. If this field is an array, it MUST
 
 ##### `src` (optional)
 
-This specifies where information about this dependency can be acquired, but it's not always required. If the metadata of the parent project is being served from a host, then this field is not required and clients should lookup the ID at the host. For example, if I request metadata about a project from Modrinth and there is a dependency, "my-dependency", then I should call Modrinth's API in order to find out more about that dependency.
+This specifies where information about this dependency can be acquired, but it's not always required. If the metadata of the parent project is being served from a host, then this field is not required and clients can lookup the ID at the host. For example, if I request metadata about a project from Modrinth and there is a dependency, "my-dependency", then I should call Modrinth's API in order to find out more about that dependency.
 
-But it some cases, that's either not possible or impractical, which is where the `src` field comes in. This field MUST contain either a String containing a URL that links to full metadata about the dependency, or it can an object which fully complies with the MODIP project spec.
+But it some cases, that's either not possible or impractical, which is where the `src` field comes in. This field MUST contain either a String containing a URL that links to full metadata about the dependency, or it can be an object which fully complies with the MODIP project spec.
 For example, both 
 ```
 "src": "https://example.com/dependency.modip.json"
