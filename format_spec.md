@@ -323,7 +323,7 @@ For example, both
 and 
 ```jsonc
 "src": {
-  "id": "depdency-id",
+  "id": "dependency-id",
   "name": "My Dependency"
   // you get the idea
 }
