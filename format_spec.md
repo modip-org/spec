@@ -291,9 +291,9 @@ Whether or not this version is allowed to be installed, based on the condition. 
 
 ### `dependencies` (optional)
 
-This field MUST be an array containing information about dependencies that may or may not be required for this project. Each dependency object contained in this array follows the same format as a regular project, but not all fields are required. Other fields relating to dependencies are also added.
+This field MUST be an array containing dependency objects.
 
-The following fields are changed fields for dependencies. Dependencies MUST contain each of these fields. These fields are the minimum requirement for a dependency.
+Dependency objects contain the following fields.
 
 ##### `id`
 
@@ -313,8 +313,23 @@ This field MUST be either an Array or String. If this field is an array, it MUST
 
 ##### `src` (optional)
 
-If not all information is listed inside a dependency object and it's metadata is not hosted on the same host which is serving metadata for the parent project, the `src` field may be used. This field MUST contain a URL. This URL MUST serve MODIP Format-compliant metadata about the required dependency. It MUST include the `versions` field.  
-    
+This specifies where information about this dependency can be acquired, but it's not always required. If the metadata of the parent project is being served from a host, then this field is not required and clients should lookup the ID at the host. For example, if I request metadata about a project from Modrinth and there is a dependency, "my-dependency", then I should call Modrinth's API in order to find out more about that dependency.
+
+But it some cases, that's either not possible or impractical, which is where the `src` field comes in. This field MUST contain either a String containing a URL that links to full metadata about the dependency, or it can an object which fully complies with the MODIP project spec.
+For example, both 
+```
+"src": "https://example.com/dependency.modip.json"
+```
+and 
+```jsonc
+"src": {
+  "id": "depdency-id",
+  "name": "My Dependency"
+  // you get the idea
+}
+```
+are valid.
+
 *TODO: Change Minecraft's dependency status? Remove special-case dependencies?*
 
 The required Minecraft Version also MUST be stored as a dependency. It's `id` value MUST be set to `minecraft`. It also MUST not contain the `required` field, as Minecraft is not an optional component.
