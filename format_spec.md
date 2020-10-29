@@ -320,6 +320,10 @@ If not all information is listed inside a dependency object and it's metadata is
 The required Minecraft Version also MUST be stored as a dependency. It's `id` value MUST be set to `minecraft`. It also MUST not contain the `required` field, as Minecraft is not an optional component.
 A dependencies implementation guide for launchers is available in **format_implementing.md**.
 
+##### `installation`
+
+The installation script for this version. For details about installation scripts, see `install_script.md`.
+
 ---
 
 ### `files`
@@ -342,18 +346,6 @@ The relation of this file. Possible values for this field are available in **for
 ##### `dependencies` (optional)
 
 This field MUST conform to the same specification as the Version's dependencies. BOTH a File and Version can have dependencies.
-
-##### `installation`
-
-The installation method of this file. This MUST be stored as an object. The object MUST contain the field `method`. Information on the possible values in the installation object is [currently available as a Pull Request](https://github.com/modip-org/spec/pull/2).
-
-The installation field CAN be present for BOTH Version and File Objects, similar to `dependencies`. The installation method in the file will override the installation method in the version if present.
-
-If the installation field is present in the Version, it is not required in the file. If it's NOT present in the version, it MUST be present for the file. The per-version installation field exists for Frameworks to avoid unnecessary fields and to be clearer about how a version should be installed. For an example Framework in the MODIP format, please view **examples/format_example_fabric_loader.json**.
-
-##### `allowed` (optional)
-
-Specifies whether this file is allowed to be installed. Used in conjunction with Conditions. **This field MAY be a condition.**
 
 ##### `downloads`
 
