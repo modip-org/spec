@@ -62,12 +62,11 @@
           "url": "https://maven.fabricmc.net"
         }
       },
-      "dependencies": [
-        {
-          "id": "minecraft",
-          "version": "1.16.1"
-        }
-      ],
+      "game": {
+        "versions": [
+          "1.16.1"
+        ]
+      },
       "files": [
         {
           "rel": "primary",

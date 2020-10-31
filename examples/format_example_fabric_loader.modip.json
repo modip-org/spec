@@ -58,11 +58,12 @@
       "installation": {
         "method": "versionJsonInstall"
       },
+      "game": {
+        "versions": [
+          "1.16.1"
+        ]
+      },
       "dependencies": [
-        {
-          "id": "minecraft",
-          "version": "1.16.1"
-        },
         {
           "id": "framework-fabric-intermediary",
           "version": "1.16.1",

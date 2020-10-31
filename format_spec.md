@@ -292,11 +292,11 @@ Whether or not this version is allowed to be installed, based on the condition. 
 
 ### `game`
 
-The version of the game that this project version supports or requires. It contains the following fields:
+The version of the game that this project version supports or requires. It contains one field, `versions`
 
-##### `minimum`
+##### `versions`
 
-The minimum version of the game required to use this project. This should be treated as a strict requirement - any version below, and this project will not work at all.
+This lists every version of Minecraft that this version of the project is known to support. Be very specific in this field - some launchers may assume a `1.16.2` mod works on `1.16.3`, but not all will. Include *every version*.
 
 ##### `compat` (optional)
 
