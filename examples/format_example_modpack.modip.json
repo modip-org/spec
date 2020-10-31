@@ -7,7 +7,7 @@
   "id": "111111-111111-111111-111111-111111",
   "name": "Example Modpack",
   "summary": "This is a short, one-sentence summary of the Example Modpack.",
-  "description": "This is a long description describing the modpack. <b>HTML</b> can optionally be used.",
+  "description": "This is a long description describing the modpack. <b>Formatted Text</b> can optionally be used.",
   "media": [
     {
       "rel": "icon",
@@ -131,12 +131,27 @@
           "version": "6.2.1"
         }
       ],
-      "installation": {
-        "method": "instanceInstall"
-      },
+      "installation": [
+        {
+          "type": "client_server_fork",
+          "client_steps": [
+            {
+              "type": "extractZip",
+              "directory": ".",
+              "file": "overrides.zip"
+            }
+          ],
+          "server_steps": [
+            {
+              "type": "extractZip",
+              "directory": ".",
+              "file": "overrides-server.zip"
+            }
+          ]
+        }
+      ],
       "files": [
         {
-          "rel": "compressedOverrides",
           "name": "overrides.zip",
           "sha256": "< sum goes here >",
           "downloads": [
@@ -151,18 +166,11 @@
           ]
         },
         {
-          "rel": "compressedOverrides",
           "name": "overrides-server.zip",
           "sha256": "< sum goes here >",
           "downloads": [
             "https://example.com/download/oevrrides.zip"
           ],
-          "allowed": {
-            "environment": {
-              "client": false,
-              "server": true
-            }
-          },
           "_comment": [
             "This file is only allowed on a server"
           ]

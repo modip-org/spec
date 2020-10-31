@@ -55,13 +55,19 @@
       "name": "Intermediary 1.16.1",
       "releaseDate": "2020-08-05T20:59:00Z",
       "changelog": "Intermediary changelog goes here...",
-      "installation": {
-        "method": "classpathLibrary",
-        "versionJson": {
-          "name": "net.fabricmc:intermediary:1.16.1",
-          "url": "https://maven.fabricmc.net"
+      "installation": [
+        {
+          "type": "addClasspathLibrary",
+          "library": {
+            "name": "net.fabricmc:intermediary:1.16.1",
+            "downloads": {
+              "artifact": {
+                "modip_filename": "intermediary-1.16.1.jar"
+              }
+            }
+          }
         }
-      },
+      ],
       "game": {
         "versions": [
           "1.16.1"

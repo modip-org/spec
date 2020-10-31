@@ -55,14 +55,43 @@
       "name": "Release 0.9.0+build.204",
       "releaseDate": "2020-08-05T20:59:00Z",
       "changelog": "Fabric version changelog goes here...",
-      "installation": {
-        "method": "versionJsonInstall"
-      },
       "game": {
         "versions": [
           "1.16.1"
         ]
       },
+      "installation": [
+        {
+          "type": "addClasspathLibrary",
+          "library": {
+            "name": "net.fabricmc:tiny-mappings-parser:0.2.2.14",
+            "downloads": {
+              "artifact": {
+                "sha1": "<sum goes here>",
+                "size": 12345678,
+                "url": "https://maven.fabricmc.net/net/fabricmc/tiny-mappings-parser/tiny-mappings-parser-0.2.2.14.jar"
+              }
+            }
+          }
+        },
+        {
+          "type": "addClasspathLibrary",
+          "library": {
+            "name": "net.fabricmc:fabric-loader:0.9.0+build.204",
+            "downloads": {
+              "artifact": {
+                "modip_filename": "fabric-loader-0.9.0+build.204.jar"
+              }
+            }
+          }
+        },
+        {"_comment": "and all the rest of Fabric's required libraries - there are 12 in total"},
+        {
+          "type": "setMainClass",
+          "from": ["net.minecraft.client.main.Main"],
+          "to": "net.fabricmc.loader.launch.knot.KnotClient"
+        }
+      ],
       "dependencies": [
         {
           "id": "framework-fabric-intermediary",
@@ -73,10 +102,10 @@
       "files": [
         {
           "rel": "versionJson",
-          "name": "profile.json",
+          "name": "fabric-loader-0.9.0+build.204.jar",
           "sha256": "< sum goes here >",
           "downloads": [
-            "https://meta.fabricmc.net/v2/versions/loader/1.16.1/0.9.0+build.204/profile/json"
+            "https://maven.fabricmc.net/net/fabricmc/fabric-loader/0.9.0+build.204/fabric-loader-0.9.0+build.204.jar"
           ]
         }
       ]

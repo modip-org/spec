@@ -42,7 +42,7 @@ The name of a Project. This name MUST be a human readable name and SHOULD NOT co
 
 ### `summary` (optional)
 
-A short, one sentence summary of the Project. Any form of rich text such as HTML CANNOT be used. This may be displayed in search results, for example.
+A short, one sentence summary of the Project. Formatted Text CANNOT be used. This may be displayed in search results, for example.
 
 ---
 
@@ -50,7 +50,7 @@ A short, one sentence summary of the Project. Any form of rich text such as HTML
 
 ### `description` (optional)
 
-A long description of the project. HTML MAY be used. Markdown or other forms of rich text CANNOT be used. See **format_implementing.md** for information on how launchers should implement HTML, as well as forbidden elements and other guidelines. This may contain new line characters.
+A long description of the project. Formatted Text MAY be used.
 
 ---
 
@@ -93,7 +93,7 @@ Base64 encoded images, which are typically prefixed with `data:base64` are NOT R
 
 ##### `caption` (optional)
 
-An optional string which can be displayed as a caption for the current Media Item. Any form of rich text such as HTML CANNOT be used. `caption` CANNOT be present when `rel` is set to `icon`.
+An optional string which can be displayed as a caption for the current Media Item. Formatted Text CANNOT be used. `caption` CANNOT be present when `rel` is set to `icon`.
 
 ##### `sha256` (optional)
 
@@ -280,7 +280,7 @@ The release date of this version. It MUST be stored as an ISO-8601 conforming St
 
 ### `changelog`
 
-The changelog of this version. The changelog MAY contain HTML. It follows the same rules as `description` for what is allowed.
+The changelog of this version. The changelog MAY contain Formatted Text. It follows the same rules as `description` for what is allowed.
 
 ---
 
@@ -297,38 +297,6 @@ The version of the game that this project version supports or requires. It conta
 ##### `versions`
 
 This lists every version of Minecraft that this version of the project is known to support. Be very specific in this field - some launchers may assume a `1.16.2` mod works on `1.16.3`, but not all will. Include *every version*.
-
-##### `compat` (optional)
-
-This is how you define compatibility between different Minecraft versions. This field is optional, as launchers should include their own default compatibility database.
-
-This field is an object that contains each version of Minecraft along with their compatibility score. Any version below the version specified in the `minimum` field should be automatically assumed incompatible, so you don't need to include anything less than that (e.g. if your `minimum` field is set to `1.16.0`, you don't need to include compatibility info for 1.15).
-
-The following compatibility scores are available:
-`"definitely"` - The project has been tested, and works on the version.
-`"probably" - The project will probably work.
-`"maybe"` - The project may or may not work.
-`"not-likely"` - The project is not likely to work on this version.
-`"definitely-not"` - The project has been confirmed to not work on this version.
-
-Below is an example `compat` field value:
-
-```json
-"compat": {
-  "1.16.4": "probably",
-  "1.16.3": "probably",
-  "1.16.2": "maybe",
-  "1.16.1": "probably",
-  "1.16.0": "not-likely",
-  "1.15.2": "probably",
-  "1.15.1": "probably",
-  "1.15.0": "not-likely"
-}
-```
-
-Each score refers to how likely the compatibility is between it's version and the previous version. For example, if you wanted to find out if a 1.15 mod is compatible with 1.16, you would start at 1.15.0, and move your way up until you hit 1.16.0.
-
-Scores are combined to the worst possible value. If for example, on your way to 1.16 you reach a version with a score of `not-likely`, then you can assume all versions after that one are not likely to work.
 
 ---
 
@@ -360,6 +328,10 @@ If not all information is listed inside a dependency object and it's metadata is
 
 A dependencies implementation guide for launchers is available in **format_implementing.md**.
 
+##### `installation`
+
+The installation script for this version. For details about installation scripts, see `install_script.md`.
+
 ---
 
 ### `files`
@@ -382,18 +354,6 @@ The relation of this file. Possible values for this field are available in **for
 ##### `dependencies` (optional)
 
 This field MUST conform to the same specification as the Version's dependencies. BOTH a File and Version can have dependencies.
-
-##### `installation`
-
-The installation method of this file. This MUST be stored as an object. The object MUST contain the field `method`. Information on the possible values in the installation object is [currently available as a Pull Request](https://github.com/modip-org/spec/pull/2).
-
-The installation field CAN be present for BOTH Version and File Objects, similar to `dependencies`. The installation method in the file will override the installation method in the version if present.
-
-If the installation field is present in the Version, it is not required in the file. If it's NOT present in the version, it MUST be present for the file. The per-version installation field exists for Frameworks to avoid unnecessary fields and to be clearer about how a version should be installed. For an example Framework in the MODIP format, please view **examples/format_example_fabric_loader.json**.
-
-##### `allowed` (optional)
-
-Specifies whether this file is allowed to be installed. Used in conjunction with Conditions. **This field MAY be a condition.**
 
 ##### `downloads`
 
