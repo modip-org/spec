@@ -69,3 +69,8 @@ Another condition you may see often is `required`
 ```
 
 If your program considers itself a client, the mod is required. If your program considers itself a server, the mod is not required to be installed.
+
+---
+
+## Multi-file zips
+Users may want to import a MODIP multifile zip. This zip contains a root file, `index.modip.json` which contains metadata about the project, which is likely to be a modpack/instance. Parse the project the same way you would as a normal project, except that when encountering a file name, check to see if it exists in the zip. If you encounter a file with the `name` field set to `overrides.zip`, check for a file named `overrides.zip` inside the multifile zip. If you find one and it's hash matches succesfully, you don't need to download it from the files `downloads` array.

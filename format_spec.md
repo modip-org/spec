@@ -2,7 +2,7 @@
 
 This document provides detailed information on the MODIP Format.
 
-The MODIP format uses JSON to store information. If providing an API that returns format-compliant information, the `application/json` Content-Type header SHOULD be provided. If stored on disk, the `.modip.json` extension SHOULD be used.
+The MODIP format uses JSON to store information. If providing an API that returns format-compliant information, the `application/json` Content-Type header SHOULD be provided. If stored on disk, the `.modip.json` extension SHOULD be used. For storage on disk of modpacks/instances, see "Storing multiple files in one zip" at the end.
 
 A format-compliant example is provided in **examples/format_example.modip.json**.
 
@@ -393,3 +393,26 @@ The most obvious use of Conditions is for specifying client and server side mods
 See **format_values.md** for the list of conditions and groups.
 
 For information on how to implement conditions in a launcher, see **format_implementing.md**.
+
+---
+
+## Storing multiple files in one zip
+
+It's useful to be able to store a collection of multiple projects inside one zip file. The most obvious example of this is for storing modpacks. To properly store multiple in one zip, the proper architecture as listed below should be used:
+
+```
+my_modpack.zip/
+  index.modip.json
+```
+
+The metadata for the project should be stored inside `index.modip.json`. The file's name MUST be `index.modip.json`, otherwise clients will have no idea where to look for proejct metadata.
+
+What if you want to store other files, like an overrides zip for a modpack? That can be done by simply storing the file, with it's name matching the `name` field in `version.files`.
+
+```
+my_modpack.zip/
+  index.modip.json
+  overrides.zip
+```
+
+While reading the project's metadata, clients will notice the file `overrides.zip`, and then check for it inside the parent zip file. If it's found, then it will use the local `overrides.zip` instead of trying to download one from a URL specified in `file.downloads`. Because of this, you MAY leave the `downloads` array blank, but it is still recommended to provide download URLs if possible.
