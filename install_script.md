@@ -7,7 +7,20 @@ Each version of a project can have a different install script.
 An install script consists of a *list* of steps referencing the files in the version.
 
 Example:
-`[{"type": "placeInDirectory", "directory": "mods", "file": "ExampleMod-1.0.0.jar"}, {"type": "placeInDirectory", "directory": "coremods", "file": "ExampleMod-1.0.0-coremod.jar"}]`
+```json
+[
+    {
+        "type": "placeInDirectory", 
+        "directory": "mods", 
+        "file": "ExampleMod-1.0.0.jar"
+    }, 
+    {
+        "type": "placeInDirectory", 
+        "directory": "coremods", 
+        "file": "ExampleMod-1.0.0-coremod.jar"
+    }
+]
+```
 
 ## `depends`/`conflicts`/`recommends` step
 
@@ -23,11 +36,20 @@ Finding a set of dependencies which do not conflict is, in the general case, equ
 Installers are not required to include SAT solvers, since dependencies and conflicts are advisory. If the user wants to install a set of projects, and an "obvious" solution does not work (e.g. latest version of each), then the installer may leave it up to the user to find a set of versions which works, instead of spending significant computational time trying to find a solution. Installers are permitted to include additional heuristics.
 
 Example:
-`[{"type": "depends", "id": "cofh-core", "version": ">=1.2.3.4", "url": "https://example.com/modip/cofh-core.json"}]`
+```json
+[
+    {
+        "type": "depends", 
+        "id": "cofh-core", 
+        "version": ">=1.2.3.4", 
+        "url": "https://example.com/modip/cofh-core.json"
+    }
+]
+```
 
 ### `id`
 
-The ID of the required dependency. ~If this project is a Framework, it MUST be one of the values listed in **format_values.md** for Framework IDs. Hosts serving Framework metadata MUST use these standardized IDs.~
+The ID of the required dependency.
 
 ### `required`
 
@@ -44,7 +66,13 @@ Download a file into a subdirectory of the Minecraft instance directory.
 
 Example:
 
-`{"type": "placeInDirectory", "directory": "mods", "file": "ExampleMod-1.0.0.jar"}`
+```json
+{
+    "type": "placeInDirectory", 
+    "directory": "mods",
+    "file": "ExampleMod-1.0.0.jar"
+}
+```
 
 `directory` may be a nested subdirectory, e.g. `"mods/1.7.10"`. Any parent directories which don't already exist are created.
 `directory` may not contain a `.` or `..` part, unless the entire value of `directory` is `"."` (which places the file in the instance directory).
@@ -55,7 +83,13 @@ Download a file *and extract it* into a subdirectory of the Minecraft instance d
 
 Example:
 
-`{"type": "extractZip", "directory": "config", "file": "modpack-configs.zip"}`
+```json
+{
+    "type": "extractZip", 
+    "directory": "config", 
+    "file": "modpack-configs.zip"
+}
+```
 
 `directory` may be a nested subdirectory, e.g. `"mods/1.7.10"`. Any parent directories which don't already exist are created.
 `directory` may not contain a `.` or `..` part, unless the entire value of `directory` is `"."` (which extracts the file into the instance directory).
@@ -70,7 +104,14 @@ Note: this is considered an obsolete installation technique. Newer loaders typic
 is not installed, this does not cause it to be installed - the entry does nothing.
 
 Example:
-`{"type": "jarMod", "file": "modloadermp-1.0.0.jar", "before": ["minecraft-forge"], "after": ["modloader"]}`
+```json
+{
+    "type": "jarMod", 
+    "file": "modloadermp-1.0.0.jar", 
+    "before": ["minecraft-forge"], 
+    "after": ["modloader"]
+}
+```
 
 ## `addClasspathLibrary` step
 
@@ -87,14 +128,14 @@ TODO: Mojang sometimes changes this format. We should pin it down to a particula
 
 Example:
 
-```
+```json
 {
     "type": "addClasspathLibrary",
     "library": {
         "name": "com.me.mylibrary:mylibrary:1.2.3",
         "downloads": {
             "artifact": {
-                "modip_filename": "MyLibrary-common.jar"
+                "modipFilename": "MyLibrary-common.jar"
             },
             "classifiers": {
                 "natives-osx": {
@@ -129,7 +170,7 @@ Updates the main class. Mainly used by loaders and standalone mods.
 
 Example:
 
-```
+```json
 {
     "type": "setMainClass",
     "from": ["net.minecraft.client.main.Main"],
@@ -147,7 +188,7 @@ Uses a different installation method on the client than on the server.
 
 Example:
 
-```
+```json
 {
     "type": "clientServerFork",
     "clientSteps": [
@@ -157,13 +198,13 @@ Example:
 }
 ```
 
-Note: `client_steps` and `server_steps` are always lists, and must be present even if empty.
+Note: `clientSteps` and `serverSteps` are always lists, and must be present even if empty.
 
 ## Generic fork step
 
 Allows a mod to support multiple dependency sets, such as different mod loaders.
 
-```
+```json
 {
     "type": "fork",
     "id": "<fork id>",
