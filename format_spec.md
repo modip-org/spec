@@ -287,6 +287,17 @@ The changelog of this version. The changelog MAY contain Formatted Text. It foll
 ### `allowed` (optional)
 
 Whether or not this version is allowed to be installed, based on the condition. **This field MUST be a condition, with a boolean value**
+
+---
+
+### `game`
+
+The version of the game that this project version supports or requires. It contains one field, `versions`
+
+##### `versions`
+
+This lists every version of Minecraft that this version of the project is known to support. Be very specific in this field - some launchers may assume a `1.16.2` mod works on `1.16.3`, but not all will. Include *every version*.
+
 ---
 
 ### `dependencies` (optional)
@@ -330,9 +341,6 @@ and
 ```
 are valid.
 
-*TODO: Change Minecraft's dependency status? Remove special-case dependencies?*
-
-The required Minecraft Version also MUST be stored as a dependency. It's `id` value MUST be set to `minecraft`. It also MUST not contain the `required` field, as Minecraft is not an optional component.
 A dependencies implementation guide for launchers is available in **format_implementing.md**.
 
 ##### `installation`
