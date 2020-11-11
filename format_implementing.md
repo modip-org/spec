@@ -8,7 +8,7 @@ If you're a launcher developer, this document can help you by providing useful t
 
 Frameworks also exist as MODIP Format Projects. It's important for launchers to understand the Project metadata and install frameworks as needed.
 
-Framework IDs MUST be prefixed with `framework-`, so launchers can tell if a project is a Framework.
+Framework IDs SHOULD be prefixed with `framework-`. This naming scheme makes it clear that it is no "ordinary" mod, though not being treated any different.
 
 ---
 
