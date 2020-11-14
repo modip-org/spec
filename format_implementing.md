@@ -8,7 +8,7 @@ If you're a launcher developer, this document can help you by providing useful t
 
 Frameworks also exist as MODIP Format Projects. It's important for launchers to understand the Project metadata and install frameworks as needed.
 
-Framework IDs MUST be prefixed with `framework-`, so launchers can tell if a project is a Framework.
+Framework IDs SHOULD be prefixed with `framework-`. This naming scheme makes it clear that it is no "ordinary" mod, though not being treated any different.
 
 ---
 
@@ -64,3 +64,19 @@ Another condition you may see often is `required`
 ```
 
 If your program considers itself a client, the mod is required. If your program considers itself a server, the mod is not required to be installed.
+
+---
+
+## Implementing `game`
+When parsing a version of a project, the `game` field specifies which Minecraft version it's compatible with.
+
+When parsing the `versions` field, the lowest version is considered the minimum. Any version released before the lowest version was released, the project is considered to not function at all.
+
+For versions above the highest version listed, it's up to you to decide what to do. You might consider maintaing your own "compat database" of which versions are compatible. But that's up for you to decide.
+
+### FAQ
+**Q: Where do I get Minecraft version metadata, if it's not specified anywhere?**  
+A: Get it from Mojang at http://launchermeta.mojang.com/mc/game/version_manifest_v2.json
+
+**Q: How do I compare Minecraft versions?**
+A: Compare using release dates. Use the `releaseTime` field in the Mojang version manifest specifically. It may sound counterintuitive, when it's easy to compare versions like 1.16.1 and 1.16.2 together, but it lets you compare snapshots and old versions easily.

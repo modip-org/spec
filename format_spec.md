@@ -290,6 +290,16 @@ Whether or not this version is allowed to be installed, based on the condition. 
 
 ---
 
+### `game`
+
+The version of the game that this project version supports or requires. It contains one field, `versions`
+
+##### `versions`
+
+This lists every version of Minecraft that this version of the project is known to support. Be very specific in this field - some launchers may assume a `1.16.2` mod works on `1.16.3`, but not all will. Include *every version*.
+
+---
+
 ### `dependencies` (optional)
 
 This field MUST be an array containing dependency objects.
@@ -331,6 +341,8 @@ and
 }
 ```
 are valid.
+
+A dependencies implementation guide for launchers is available in **format_implementing.md**.
 
 ##### `installation`
 

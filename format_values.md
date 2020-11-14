@@ -4,7 +4,7 @@ This document is a list of standardized values that can be used in certain field
 
 ## Frameworks
 
-The following is a list of standardized Framework names.
+The following list contains standardized Framework names which SHOULD be used as the respective projects ID.
 
 - `framework-fabric-loader`
 - `framework-forge`
@@ -12,9 +12,7 @@ The following is a list of standardized Framework names.
 - `framework-rift`
 - `framework-risugami-modloader`
 
-These names are prefixed with `framework-` to differentiate them between normal Projects. It also prevents possible collisions between Frameworks and other projects that have the same name.
-
-Hosts that serve Framework metadata MUST use these IDs. When a Framework ID is used in metadata, such as listed as a dependency, it MUST be one of the standardized values.
+These names are prefixed with `framework-` to visually differentiate them from other projects by their purpose. It also prevents possible collisions between Frameworks and other projects that have the same name (though it is encouraged to not name projects after already existing and potentially popular ones).
 
 ---
 
