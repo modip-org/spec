@@ -66,6 +66,11 @@ If your program considers itself a client, the mod is required. If your program 
 
 ---
 
+## Multifile zips
+Users may want to import a MODIP multifile zip. This zip contains a root file, `index.modip.json` which contains metadata about the project, which is likely to be a modpack/instance. Parse the project the same way you would as a normal project, except that when encountering a file name, check to see if it exists in the zip. If you encounter a file with the `name` field set to `overrides.zip`, check for a file named `overrides.zip` inside the multifile zip. If you find one and it's hash matches succesfully, you don't need to download it from the files `downloads` array.
+
+Implementation of multifile zips is **not required**. You only need to support multifile zips if you would like users to be able to import modpacks from a zip. 
+
 ## Implementing `game`
 When parsing a version of a project, the `game` field specifies which Minecraft version it's compatible with.
 

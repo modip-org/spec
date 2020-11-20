@@ -2,7 +2,7 @@
 
 This document provides detailed information on the MODIP Format.
 
-The MODIP format uses JSON to store information. If providing an API that returns format-compliant information, the `application/json` Content-Type header SHOULD be provided. If stored on disk, the `.modip.json` extension SHOULD be used.
+The MODIP format uses JSON to store information. If providing an API that returns format-compliant information, the `application/json` Content-Type header SHOULD be provided. If stored on disk, the `.modip.json` extension SHOULD be used. For storage on disk of modpacks/instances, see **multifile_zips.md**.
 
 A format-compliant example is provided in **examples/format_example.modip.json**.
 
