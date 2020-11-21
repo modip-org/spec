@@ -21,6 +21,13 @@ When looking at a dependency, the first thing to do is check for the `src` field
 If there is no `src` field, you have two options:
 1) Request information on this ID from hosts that your launcher knows of.
 2) Throw a warning to the user, suggesting that they need to download the project, but the launcher cannot automatically install it.
+
+### Reasoning for optional `src` field
+
+You might think having an optional `src` field is stupid, as it doesn't tell a launcher where to get a dependency. But there is a valid reason for it. Some dependencies cannot be represented in MODIP format at all, due to legal, technical, or other reasons. The optional `src` field allows developers to indicate that a dependency is needed, but due to any number of reasons it cannot be provided. 
+
+This is better than simply ommitting the dependency altogether, as it gives a launcher the opportunity to notify the user about the dependency, rather than missing it.
+
 ---
 
 ## Implementing Conditions
