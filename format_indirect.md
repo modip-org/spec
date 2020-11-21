@@ -1,6 +1,6 @@
 # Indirect Format
 
-The Indirect Format allows for a dependency to be referenced in a smaller format that takes up less space and bandwidth. This is designed primarily for the `src` field in a dependency.
+The Indirect Format allows for a project to be referenced in a smaller format that takes up less space and bandwidth. 
 
 An indirect project always starts with the `"indirect": true` value in order to clearly indicate that it's indirect. This allows launchers and clients to understand and treat this differently.
 
