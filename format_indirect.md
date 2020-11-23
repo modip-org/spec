@@ -4,9 +4,28 @@ The Indirect Format allows for a project to be referenced in a smaller format th
 
 An indirect project always starts with the `"indirect": true` value in order to clearly indicate that it's indirect. This allows launchers and clients to understand and treat this differently.
 
-At the root of the format are many of the same fields that are in the root of the regular format. These are `schemaVersion`, `id`, `name`, `summary`, `descrption`, `media`, `rel`, `authors`, `license`, `links`, `successors`, and `predecessors`. This fields act exactly the same as they do in the full format, so read **format_spec.md** to find out more.
+At the root of the format are many of the same fields that are in the root of the regular format. These are `schemaVersion`, `id`, `name`, `summary`, `media`, `rel`, `authors`, `license`, `links`, `successors`, and `predecessors`. This fields act exactly the same as they do in the full format, so read **format_spec.md** to find out more.
 
 The indirect format contains modified versions of original fields.
+
+### `description`
+
+This is the field for the full description. It contains a URL that, when fetched, responds with a document which follows the Formatted Text standard. For example, the project is listed like this:
+```jsonc
+{
+  "id": "my-project",
+  "name": "My Project",
+  "description": "https://example.com/db/example-project/description.xml"
+}
+```
+
+When you make a HTTP GET request to `https://example.com/db/example-project/description.xml`, you get a result similar to:
+```xml
+<h1>My Project</h1>
+<h3>This is my Project</h3>
+
+My project has many cool features.
+```
 
 ### `versions`
 
@@ -42,13 +61,15 @@ The `schemaVersion` field MUST be required, otherwise the data will be invalid a
 
 // TODO: More more fields behind other requests?
 
-**Below is an example of the Indirect Format, in case earlier documentation has not been clear.**
+
+# Format Example
 
 ```jsonc
 {
   "schemaVersion": "1.0.0",
   "id": "example-project",
   "name": "Example Project",
+  "description": "https://example.com/db/example-project/description.xml",
   "versions": [
     {
       "id": "my-version",
