@@ -57,7 +57,7 @@ If you want to retrieve other information, like the list of files or installatio
 }
 ```
 
-The `schemaVersion` field MUST be required, otherwise the data will be invalid and backwards-compatibility cannot be properly implemented.
+The `schemaVersion` field MUST exist, otherwise the data will be invalid and backwards-compatibility cannot be properly implemented.
 
 // TODO: More more fields behind other requests?
 
