@@ -22,15 +22,7 @@ This field MUST be stored as an String. It contains the version of the Format be
 
 The ID of the Project. There is no standard or required format on how to store an ID, other than it CANNOT include spaces. It may be a slug, UUID, random number, or other method of storing IDs. It is RECOMMENDED that IDs are not tied to the name of a project.
 
-This field CAN ONLY contain the following characters:
-- Lowercase and capital letters from A through Z
-- Numbers 0 through 9
-- Underscores (Unicode U+005F)
-- Hyphen (Unicode U+002D)
-
-Any other characters CANNOT be used, including special characters like newlines and spaces.
-
-**TODO: Limited character set - good or bad?**
+This field may contain any printable ASCII character except for spaces (U+0021 to U+007E, inclusive)
 
 ---
 
