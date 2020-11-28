@@ -283,6 +283,25 @@ All links should be displayed *somewhere*, regardless of `rel`. That is what `di
 
 The `last_updated` value is the same for all API requests associated with the same project (e.g. `versions` and `description`). It has to be updated if the mod is updated, even if the rest of the data in the response did not change.
 
+# Limits
+
+We can't stop you from publishing whatever you want, so this section defines a minimum capability for consumers, rather than a maximum capability for publishers.
+Publishers would do well to obey them in order to avoid consumers of their content from encountering problems.
+
+* Each `last_updated` should be no longer than 128 characters. If this limit is violated, clients may be unable to use the delta update mechanism, and may fall back to full updates.
+* UUIDs are exactly 35 characters long. They can be unambiguously converted to a 16-byte binary representation for storage.
+* Version IDs should be no longer than 128 characters. If this limit is violated, clients MAY be unable to show the versions with longer IDs.
+
+Limits on the contents of a version are outside the scope of this document.
+
+## Project IDs
+
+Because of the prefix system, there is no guaranteed maximum length for project IDs. Clients MAY choose to ignore projects with IDs longer than 255 characters.
+
+Projects should not be originated with IDs longer than 63 characters. This allows for up to 12 15-character prefixes with separators, before the certain clients may not be able to handle the project. (There is no limit on number or length of prefixes, so this is an approximate limit)
+
+Note that if the length limit is reached and causes a problem, an effective workaround is to create a shortcut along the path - i.e. if `server_a:server_b:server_c:...:server_z:project_id` is too long, `server_a` may choose to directly trust `server_z`, thus shortening the ID to `server_a:server_z:project_id`
+
 # other stuff
 
 TODO: What else is needed?
