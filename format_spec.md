@@ -87,7 +87,7 @@ There is no difference between embedded videos and images, as they both display 
 
 The `src` field is valid for both `video` and `image`. It contains a direct URI to either a playable video file or an image file. It is RECOMMENDED for images to be in the WebP or PNG formats, and it is RECOMMENDED for videos to be in the WebM format. Recommended video codecs include VP9 and AV1.
 
-Base64 encoded images, which are typically prefixed with `data:base64` are NOT RECOMMENDED, however they CAN be present. If a Base64 encoded image is present, it MUST be prefixed with `data:base64`.
+`data` URIs are allowed, but are not recommended because they increase the file size substantially.
 
 **`embed` and `src` are conflicting fields and both fields CANNOT be present in the same Media Item.**
 
