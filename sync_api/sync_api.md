@@ -18,10 +18,10 @@ Result:
 {
 	"last_updated": "1",
 	"projects": [
-		{"name": "example_project", "id": "uuid here", "last_updated": {"versions": "1", "description": "1"}},
-		{"name": "example_project_2", "id": "uuid here", "last_updated": {"versions": "1", "description": "1"}},
-		{"name": "example_repo_1:example_imported_project", "id": "uuid here", "last_updated": {"versions": "1", "description": "1"}},
-		{"name": "example_repo_1:example_repo_2:example_repo_3:example_nested_imported_project", "id": "uuid here", "last_updated": {"versions": "1", "description": "1"}}
+		{"id": "example_project", "uuid": "12345678-1234-1234-1234-12345678abcd", "last_updated": {"versions": "1", "description": "1"}},
+		{"id": "example_project_2", "uuid": "12345678-1234-1234-1234-12345678abce", "last_updated": {"versions": "1", "description": "1"}},
+		{"id": "example_repo_1:example_imported_project", "uuid": "12345678-1234-1234-1234-12345678abcf", "last_updated": {"versions": "1", "description": "1"}},
+		{"id": "example_repo_1:example_repo_2:example_repo_3:example_nested_imported_project", "uuid": "12345678-1234-1234-1234-12345678abd0", "last_updated": {"versions": "1", "description": "1"}}
 	],
 	
 	// optional
@@ -31,11 +31,12 @@ Result:
 
 The client can save `last_updated` in order to receive a delta next time it polls.
 
-The primary identifier of a project is the name, not the UUID.
+The primary identifier of a project is the ID, not the UUID.
 
 The project UUID is used to avoid cycles. If the client already has the same UUID via a shorter route, then it won't download that project from this server.
 Servers which use the same UUID for different projects, or copy the UUID of existing projects, are considered malicious (or just broken).
 
+The UUID must be a UUID (32 hexadecimal characters, 3 hyphens, 8-4-4-4-12 arrangement) and **must be in lowercase**.
 
 ## Delta fetch
 
@@ -49,12 +50,12 @@ Result:
 {
 	"last_updated": "2",
 	"projects": [
-		{"name": "example_project", "id": "uuid here", "last_updated": {"versions": "76", "description": "58"}},
-		{"name": "example_project_2", "id": "uuid here", "last_updated": {"versions": "0", "description": "485bc531-c25f-476d-a6e6-4d6cec094d11"}},
-		{"name": "example_repo_1:example_imported_project_2", "id": "uuid here", "last_updated": {"versions": "flubber", "description": "i'm a potato"}},
+		{"id": "example_project", "uuid": "12345678-1234-1234-1234-12345678abcd", "last_updated": {"versions": "76", "description": "58"}},
+		{"id": "example_project_2", "uuid": "12345678-1234-1234-1234-12345678abce", "last_updated": {"versions": "0", "description": "485bc531-c25f-476d-a6e6-4d6cec094d11"}},
+		{"id": "example_repo_1:example_imported_project_2", "uuid": "12345678-1234-1234-1234-12345678abd1", "last_updated": {"versions": "flubber", "description": "i'm a potato"}},
 	],
 	"deleted_projects": [
-		{"name": "example_repo_1:example_repo_2:example_repo_3:example_nested_imported_project"}
+		{"id": "example_repo_1:example_repo_2:example_repo_3:example_nested_imported_project"}
 	],
 	
 	// optional
@@ -113,9 +114,9 @@ Response:
 {
 	"last_updated": "1",
 	"versions": [
-		{"name": "1.0.0", "last_updated": "1"},
-		{"name": "1.0.0-interim-fix", "last_updated": "1"}
-		{"name": "1.0.1", "last_updated": "1"},
+		{"id": "1.0.0", "last_updated": "1"},
+		{"id": "1.0.0-interim-fix", "last_updated": "1"}
+		{"id": "1.0.1", "last_updated": "1"},
 	]
 }
 ```
@@ -133,11 +134,11 @@ Response:
 {
 	"last_updated": "76",
 	"versions": [
-		{"name": "1.0.1-fabric", "last_updated": {"main": "1"}},
-		{"name": "1.0.1-forge", "last_updated": {"main": "1"}}
+		{"id": "1.0.1-fabric", "last_updated": {"main": "1"}},
+		{"id": "1.0.1-forge", "last_updated": {"main": "1"}}
 	],
 	"deleted_versions": [
-		{"name": "1.0.0-interim-fix"}
+		{"id": "1.0.0-interim-fix"}
 	]
 }
 ```
@@ -178,7 +179,7 @@ Response:
 	],
 	"modloader": "fabric", // WILL PROBABLY CHANGE THIS - up to the index team
 	"minecraft": "1.7.10", // WILL PROBABLY CHANGE THIS - up to the index team
-	"equivalent_versions": [{"name": "1.0.1-forge"}] // WILL PROBABLY CHANGE THIS - up to the index team
+	"equivalent_versions": [{"id": "1.0.1-forge"}] // WILL PROBABLY CHANGE THIS - up to the index team
 }
 ```
 
