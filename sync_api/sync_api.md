@@ -159,53 +159,11 @@ Response:
 ```
 {
 	"last_updated": "1",
-	"files": [
-		{
-			"filename": "example_project-1.0.0.jar",
-			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", // lowercase hex; required if there are URLs
-			"urls": ["https://blah/blah", "https://blah2/blah2"], // optional
-			"rel": ["primary"],
-			"size": 1234, // in bytes; optional
-		},
-		{
-			"filename": "example_project-1.0.0-source.jar",
-			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", // lowercase hex; required if there are URLs
-			"urls": ["https://blah/blah", "https://blah2/blah2"], // optional
-			"rel": ["source"]
-		},
-		{
-			"filename": "crazy_yet_valid_file_entry.jar"
-		}
-	],
-	"modloader": "fabric", // WILL PROBABLY CHANGE THIS - up to the index team
-	"minecraft": "1.7.10", // WILL PROBABLY CHANGE THIS - up to the index team
-	"equivalent_versions": [{"id": "1.0.1-forge"}] // WILL PROBABLY CHANGE THIS - up to the index team
+	// all other data according to main spec
 }
 ```
 
-`rel` specifies the type of file - possibly more than one for the same file.
-`"rel": "primary"` means this is the "main" download. When you click on "download project", you get this file.  
-`"rel": "source"` means this is the "main source" download. When you click on "download source code", you get this file.  
-All files should be displayed *somewhere*, in the order they appear in the JSON, but `rel` allows for shortcuts.  
-`rel` is optional; if not specified, it's the same as an empty list.  
-If there's only one item in `rel`, it can be specified as a single string (without a list).
-
-`filename` is a default filename for the download. It SHOULD be unique within a version.
-It is mandatory. Clients should ignore files without a filename.
-
-If `sha256` is present but `urls` is not (or is empty), then the server knows about the file but isn't offering to give you a copy, perhaps for copyright reasons.
-It is possible that the client can look up the SHA256 hash and find the file a different way - perhaps it already has a copy, or perhaps it can use another API which has yet to be defined.
-These methods are out of scope of this document. If a client has no way to download the file, it should display the file anyway, but disable the download button.
-
-`sha256` and `urls` could both be missing. The server knows the file exists, but doesn't actually have a copy. This should be very rare, but clients must be prepared to handle it.
-Clients should display the file anyway, but disable the download button.
-
-If `urls` are present, but `sha256` is not, clients SHOULD act as if the file is not downloadable (i.e. as if `urls` is not present).
-This is for reliability reasons. Inevitably, one of the URLs will become outdated, and if a client uses it anyway, it will download the error page and try to install it into Minecraft.
-
-`size` is completely optional; if present, clients may use it to improve the user experience, for example by populating progress bars more accurately.
-
-`equivalent_versions` indicates different mod versions which can be substituted for this one. (SPEC TEAM TO CLARIFY)
+This is a version object as defined in the main spec, but with the addition of `last_updated`. The details are out-of-scope here.
 
 There are no delta responses here, because version information doesn't increase in size over time. `last_updated` tells you whether the version was updated at all.
 
@@ -220,68 +178,13 @@ Response:
 ```
 {
 	"last_updated": "1",
-	
-	"display_name": "Example Project 1",
-	
-	// Might be displayed in search results for example.
-	// If not present, you might try to derive it from the beginning of summary_one_paragraph or full_description, or just display the mod name by itself.
-	"summary_one_sentence": "Test project for the MCIP sync API.",
-	
-	// Might be displayed in search results for example, in a system which allows more space for search results.
-	// If not present, you might use summary_one_sentence, or try to derive it from the beginning of full_description.
-	"summary_one_paragraph": "This is a test project for the MCIP sync API. It shows what a project description looks like when represented as JSON. This is the medium-length summary.",
-	
-	// Displayed on the mod's page, where there's room to display tons of information.
-	// TODO: SPECIFY FORMATTING. Probably based on XML / a subset of XHTML.
-	// Note that Markdown parsing is ambiguous and limited; if you want to enter Markdown, the originating server must convert it to XML.
-	// For now let's assume it's plain text and newlines correspond to paragraph breaks.
-	"full_description": "Pretend there are 100 lines of text here detailing every feature in the mod.",
-	
-	"logo": {
-		"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", // lowercase hex; optional
-		"urls": ["https://blah/blah", "https://blah2/blah2"] // optional
-	}
-	
-	"screenshots": [{
-		"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", // lowercase hex; optional
-		"urls": ["https://blah/blah", "https://blah2/blah2"], // optional
-		"caption": "A windmill milling grain" // optional
-	}], // multiple screenshots allowed; display them in order
-	
-	"authors": [{
-		"name": "Contoso Corporation", // mandatory. Spaces allowed!
-		"link": "http://example.com/", // optional; go here if name is clicked on
-	}], // multiple authors allowed; display them in order; when there's only space for one author, display the first one.
-	
-	"links": [
-		{"rel": "homepage", "display_name": "Official homepage", "url": "https://example.com/example_project_1"},
-		{"rel": ["wiki", "documentation"], "display_name": "Wiki", "url": "https://example.com/example_project_1_wiki"},
-		{"rel": ["github", "scm", "issue_tracker"], "display_name": "GitHub", "url": "https://github.com/github/platform-samples"},
-	]
+	// all other data according to main spec, except for versions
 }
 ```
 
-Note: Unlike downloads, sha256 is optional for images, since a corrupted screenshot or logo doesn't cause much of a problem.
+This is a project object as defined in the main spec, but with the addition of `last_updated`, and there is no `versions`. The details are out-of-scope here.
 
-If a client has no way to download a logo or screenshot - because it has no `urls` and the client has no other way to fetch it - it should be treated as if it didn't exist at all. Captions shouldn't be displayed by themselves.
-
-Similarly to download `rel`s, link `rel`s allow for consistent shortcuts. They are not required to be present. There should usually be at most one of each.
-The currently standardized values are:
-
-* `"homepage"`: Official homepage
-* `"documentation"`: Reference documentation (e.g. a wiki)
-* `"wiki"`: A wiki. This doesn't say what kind of information is *on* the wiki...
-* `"scm"`": Source Code Management repository - e.g. GitHub. But not necessarily GitHub.
-* `"issue_tracker"`": Complaints go here.
-
-Other values MAY be used (e.g. `bitbucket`), but please use common sense so they can be standardized later. If you are unsure whether your custom value is worthy of becoming standardized, make it start with `"x-"`.
-
-Shortcuts MAY also be based on URL; a server may show a "GitHub" shortcut based on the fact that the URL points to a GitHub project)
-
-All links should be displayed *somewhere*, regardless of `rel`. That is what `display_name` is for.  
-`rel` is optional; if not specified, it's the same as an empty list. If there's only one item in `rel`, it can be specified as a single string (without a list).
-
-The `last_updated` value is the same for all API requests associated with the same project (e.g. `versions` and `description`). It has to be updated if the mod is updated, even if the rest of the data in the response did not change.
+There are no delta responses here, because this information doesn't increase in size over time. `last_updated` tells you whether the description was updated at all.
 
 # Limits
 
