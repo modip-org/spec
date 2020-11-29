@@ -194,6 +194,7 @@ Publishers would do well to obey them in order to avoid consumers of their conte
 * Each `last_updated` should be no longer than 128 characters. If this limit is violated, clients may be unable to use the delta update mechanism, and may fall back to full updates.
 * UUIDs are exactly 35 characters long. They can be unambiguously converted to a 16-byte binary representation for storage.
 * Version IDs should be no longer than 128 characters. If this limit is violated, clients MAY be unable to show the versions with longer IDs.
+* Project and version IDs SHOULD NOT contain `/`, be equal to `.` or `..`, or be empty. Although valid URLs can still be formed in all these cases (`/` must be escaped as `%2F`), lots of existing HTTP server and client code doesn't support them well, which might force clients to skip them.
 
 Limits on the contents of a version are outside the scope of this document.
 
