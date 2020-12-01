@@ -292,55 +292,6 @@ This lists every version of Minecraft that this version of the project is known 
 
 ---
 
-### `dependencies` (optional)
-
-This field MUST be an array containing dependency objects.
-
-Dependency objects contain the following fields.
-
-##### `id`
-
-The ID of the required dependency. If this project is a Framework, it MUST be one of the values listed in **format_values.md** for Framework IDs. Hosts serving Framework metadata MUST use these standardized IDs.
-
-##### `allowed` (optional)
-
-Same as `version.allowed` except for this dependency.
-
-##### `required`
-
-This field is a boolean that indicates whether a dependency is required in order for the Project requiring it to function properly. **MAY be a condition.**
-
-##### `version`
-
-This field MUST be either an Array or String. If this field is an array, it MUST contain a list of compatible versions. If this field is a String, it MUST contain a Semantic Versioning comparison String. An example of a comparison string is `>= 25.0.219`.
-
-##### `src` (optional)
-
-This specifies where information about this dependency can be acquired, but it's not always required. If the metadata of the parent project is being served from a host, then this field is not required and clients can lookup the ID at the host. For example, if I request metadata about a project from Modrinth and there is a dependency, "my-dependency", then I should call Modrinth's API in order to find out more about that dependency.
-
-But it some cases, that's either not possible or impractical, which is where the `src` field comes in. This field MUST contain either a String containing a URL that links to full metadata about the dependency, or it can be an object which fully complies with the MODIP project spec.
-For example, both 
-```
-"src": "https://example.com/dependency.modip.json"
-```
-and 
-```jsonc
-"src": {
-  "id": "dependency-id",
-  "name": "My Dependency"
-  // you get the idea
-}
-```
-are valid.
-
-A dependencies implementation guide for launchers is available in **format_implementing.md**.
-
-##### `installation`
-
-The installation script for this version. For details about installation scripts, see `install_script.md`.
-
----
-
 ### `files`
 
 This field contains the downloadable files of a Version. It MUST be an array of File Objects.
@@ -357,10 +308,6 @@ An SHA256 checksum of the file. This may be used by launchers in order to verify
 ##### `rel`
 
 The relation of this file. Possible values for this field are available in **format_values.md**. The values of this field CAN be present in multiple files. For example, a version can have a file for both the Forge and Fabric modloaders, and both of those files can have the `rel` field set to `primary`.
-
-##### `dependencies` (optional)
-
-This field MUST conform to the same specification as the Version's dependencies. BOTH a File and Version can have dependencies.
 
 ##### `downloads`
 

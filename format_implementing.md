@@ -16,9 +16,34 @@ Framework IDs SHOULD be prefixed with `framework-`. This naming scheme makes it 
 
 When a user downloads a project using a launcher, it's important to download its required dependencies. Launchers should combine the version dependencies with the file dependencies in order to create a full dependency list.
 
-For the purposes of this section, the term "the host" refers to the service a launcher is using in order to download projects, such as Diluv or Modrinth.
+When looking at a dependency, the first thing to do is check for the `src` field. If the `src` field exists, then the mod has external MODIP metadata. Process the metadata for that dependency from the `src` field.
 
-If a dependency has the `src` field, it means that at that specified URL is full metadata about this dependency. Launchers should check here first if it's specified. If the URL does not serve a suitable result, or there is no `src` field, launchers should then ask the host of the parent for a project matching the same ID. If at this point the launcher still hasn't found any metadata for the project, the launcher may choose to ask another host that it knows of for a project with the same ID, or it may choose to fail and warn the user.
+If there is no `src` field, you have two options:
+1) Request information on this ID from hosts that your launcher knows of.
+2) Throw a warning to the user, suggesting that they need to download the project, but the launcher cannot automatically install it.
+
+
+### Reasoning for optional `src` field
+
+You might think having an optional `src` field is stupid, as it doesn't tell a launcher where to get a dependency. But there is a valid reason for it. Some dependencies cannot be represented in MODIP format at all, due to legal, technical, or other reasons. The optional `src` field allows developers to indicate that a dependency is needed, but due to any number of reasons it cannot be provided. 
+
+This is better than simply ommitting the dependency altogether, as it gives a launcher the opportunity to notify the user about the dependency, rather than missing it.
+
+### Example
+
+In the below example, a launcher should display a message indicating that `non-modip-dependency` cannot be automatically downloaded.
+```json
+"dependencies": [
+  {
+    "id": "non-modip-dependency",
+    "name": "Non-MODIP Dependency",
+    "version": "1.0.0",
+    // notice: no `src` field
+  }
+]
+```
+
+
 
 ---
 
