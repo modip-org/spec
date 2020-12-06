@@ -33,9 +33,14 @@ A longer description of the modpack. TODO: Formatted using HTML/subset?
 ---
 
 ### `updates` (optional)
-A URL that can be fetched to retrieve information about updates to the modpack. TODO: Format
+A URL that can be fetched to retrieve information about updates to the modpack. This follows the update format as specified in **update_format.md**.
 
 ---
+
+### `releaseDate`
+The release date of this specific version of the modpack. It MUST be stored as an ISO-8601 conforming string. This MUST include UTC time at the end. A valid example is `2020-01-01T12:00:00Z`. This example date is the 1st of January, 2020, at 12:00:00 UTC. Spaces and time zone offsets (e.g. `+01:00`) CANNOT be used. The `Z` at the end of the string MUST be included and capitalized. The `T` separating the date and time MUST be included and capitalized.
+
+Other values, such as `2020-W32` are NOT allowed. The only allowed format is demonstrated in the example.
 
 ### `dependencies`
 The dependencies array contains a list of dependencies that must be downloaded in order for the modpack to be installed. Each object in this array contains the following fields
@@ -47,7 +52,7 @@ A unique identifier for this dependency. See **Standard IDs** for standardized I
 The version of the dependency to be installed.
 
 #### `updates` (optional)
-A URL that can be fetched for updates to the mod. Similar to the modpack's `updates` field.
+A URL that can be fetched for updates to the mod. Similar to the modpack's `updates` field. This follows the update format as specified in **update_format.md**.
 
 #### `files` (optional)
 An array containing file objects. Each file object contains:
