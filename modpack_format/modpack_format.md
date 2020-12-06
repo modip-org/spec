@@ -2,7 +2,6 @@
 
 The MODIP Modpack Format exists as a simpler alternative to the MODIP Index Format.
 
-
 ## Fields
 
 ### `formatType`
@@ -69,3 +68,17 @@ The following are standardized IDs that should be used whenever possible.
 - `minecraft` - The Minecraft game
 - `forge` - The Minecraft Forge mod loader
 - `fabric-loader` - The Fabric loader
+
+---
+
+## Storage
+When stored on disk, the modpack MUST be in ZIP format, using the `.modip.zip` extension. The main metadata of the modpack MUST be stored at `index.modip.json` in the root of the zip.
+
+If you would like to store other files in the modpack zip, such as an overrides zip for example, you can do so by placing them alongside the `index.modip.json` file, matching the name of the file. For example:
+```
+my_modpack.modip.zip/
+  index.modip.json
+  overrides.zip
+```
+
+When a launcher is attempting to install a modpack from zip, it should first check for the existence of the file within the modpack zip. If it's found and the hash matches, the launcher won't download from the `downloads` array and will instead use the local file. Because of this, you may leave the `downloads` array blank, but it's recommended to provide download URLs if possible.
