@@ -1,0 +1,25 @@
+{
+  "formatType": "modipUpdates",
+  "formatVersion": "1.0.0",
+  "id": "modpack-example",
+  "name": "Modpack Example",
+  "summary": "Pack summary",
+  "description": "Pack description",
+
+  "versions": [
+    {
+      "name": "Second release",
+      "releaseDate": "2020-01-02T12:00:00Z",
+      "downloads": [
+        "https://example.com/pack/second.modip.zip"
+      ]
+    },
+    {
+      "name": "First release",
+      "releaseDate": "2020-01-01T12:00:00Z",
+      "downloads": [
+        "https://example.com/pack/first.modip.zip"
+      ]
+    }
+  ]
+}
