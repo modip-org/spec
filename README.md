@@ -2,10 +2,10 @@
 This repository houses various specifications within MODIP.
 
 ## `index_spec`
-This is the MODIP Index Specification. This is a complex specification which may be used by a MODIP-hosted mod Index, but anyone is allowed to use it for their own purposes.
+This is the MODIP Index Specification. It's able to define any Minecraft Project, be it a Mod, Modpack, Resource Pack, Data Pack, or even a mod loader.
 
 ## `modpack_format`
-This is the MODIP Modpack Format, which is a format that is designed for simplicity and that we hope becomes the universal modpack format.
+This is the MODIP Modpack Format. It's designed as a simple format exclusively for modpacks that's easy for launchers and hosting platforms to implement. 
 
 ## Licensing
 All MODIP Specifications are provided under the public domain Creative Commons Zero license. You may use the specification however you like, without needing any permission.
