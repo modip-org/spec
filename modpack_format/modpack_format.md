@@ -42,37 +42,37 @@ The release date of this specific version of the modpack. It MUST be stored as a
 
 Other values, such as `2020-W32` are NOT allowed. The only allowed format is demonstrated in the example.
 
-### `dependencies`
-The dependencies array contains a list of dependencies that must be downloaded in order for the modpack to be installed. Each object in this array contains the following fields
+---
 
-#### `id`
-A unique identifier for this dependency. See **Standard IDs** for standardized IDs that should be used for certain projects.
+### `files`
+The files array contains a list of files for the modpack that needs to be downloaded. Each item in this array contains the following:
 
-#### `version`
-The version of the dependency to be installed.
+#### `path`
+The destination path of this file, relative to the Minecraft Instance directory. For example, `mods/MyMod.jar` resolves to `.minecraft/mods/MyMod.jar`.
 
-#### `updates` (optional)
-A URL that can be fetched for updates to the mod. Similar to the modpack's `updates` field. This follows the update format as specified in **update_format.md**.
+#### `sha256`
+An SHA256 hash of the file, used for integrity checks.
 
-#### `files` (optional)
-An array containing file objects. Each file object contains:
-
-##### `name`
-The location where the file will be placed, relative to the Minecraft installation directory. For example, `mods/MyMod.jar` specifies that the file should be placed in the `mods` directory, with a name of `MyMod.jar`.
-
-##### `sha256`
-An SHA256 hash of the file, for integrity checks.
-
-##### `downloads`
+#### `downloads`
 An array containing URLs where this file may be downloaded.
 
 ---
 
-## Standardized IDs
-The following are standardized IDs that should be used whenever possible.
+### `dependencies`
+This object contains a list of IDs and version numbers that launchers will use in order to know what to install.
+
+Available dependency IDs are:
 - `minecraft` - The Minecraft game
 - `forge` - The Minecraft Forge mod loader
 - `fabric-loader` - The Fabric loader
+
+An example `dependencies` object:
+```json
+"dependencies": {
+    "minecraft": "1.16.4",
+    "fabric-loader": "0.10.8"
+}
+```
 
 ---
 

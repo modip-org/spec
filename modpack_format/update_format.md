@@ -29,4 +29,3 @@ The release date of the version, following ISO 8601. See the `releaseDate` field
 
 #### `downloads`
 An array listing URLs where the modpack zip can be downloaded.
-(TODO: zip or no zip?)

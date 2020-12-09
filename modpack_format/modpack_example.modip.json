@@ -8,27 +8,17 @@
   
   "updates": "https://api.example.com/pack/modpack-example.modip.json",
 
-  "dependencies": [
+  "dependencies": {
+    "minecraft": "1.16.4",
+    "fabric-loader": "0.9.0"
+  },
+
+  "files": [
     {
-      "id": "minecraft",
-      "version": "1.16.4"
-    },
-    {
-      "id": "fabric-loader",
-      "version": "0.9.0"
-    },
-    {
-      "id": "mymod",
-      "version": "1.0.0",
-      "updates": "https://api.example.com/mod/mymod.modip.json",
-      "files": [
-        {
-          "name": "mods/MyMod.jar",
-          "sha256": "< hash >",
-          "downloads": [
-            "https://example.com/mymod.jar"
-          ]
-        }
+      "path": "mods/MyMod.jar",
+      "sha256": "< hash >",
+      "downloads": [
+        "https://example.com/mymod.jar"
       ]
     }
   ]
