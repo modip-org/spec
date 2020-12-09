@@ -1,6 +1,6 @@
 # MODIP Modpack Format
 
-The MODIP Modpack Format exists as a simpler alternative to the MODIP Index Format.
+The MODIP Modpack Format is a simple format that lets you store modpacks.
 
 ## Fields
 

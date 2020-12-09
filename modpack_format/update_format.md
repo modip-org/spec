@@ -13,11 +13,6 @@ Set to `1.0.0`.
 
 ---
 
-### `id`, `name`, `summary`, `description`
-This fields all behave exactly like the respective fields in the modpack format.
-
----
-
 ### `versions`
 This is an array containing version objects. Each version object is comprised of the following:
 
