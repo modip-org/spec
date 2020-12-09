@@ -36,6 +36,7 @@ Finding a set of dependencies which do not conflict is, in the general case, equ
 Installers are not required to include SAT solvers, since dependencies and conflicts are advisory. If the user wants to install a set of projects, and an "obvious" solution does not work (e.g. latest version of each), then the installer may leave it up to the user to find a set of versions which works, instead of spending significant computational time trying to find a solution. Installers are permitted to include additional heuristics.
 
 Example:
+
 ```json
 [
     {
@@ -47,18 +48,41 @@ Example:
 ]
 ```
 
+SpecialID example:
+
+```json
+[
+    {
+        "type": "depends", 
+        "specialID": "minecraft", 
+        "version": "1.6.4"
+    }
+]
+```
+
 ### `id`
 
 The ID of the required dependency.
 
-### `required`
+### `url`
 
-This field is a boolean that indicates whether a dependency is required in order for the Project requiring it to function properly. **MAY be a condition.**
+URL pointing to the file with information about this dependency?  
+Only present when `id` is present (not `specialID`)  
+[TODO: is this actually needed? Or should you query the server using the ID?]
 
 ### `version`
 
 This field MUST be either an Array or String. If this field is an array, it MUST contain a list of compatible versions. If this field is a String, it MUST contain a Semantic Versioning comparison String. An example of a comparison string is `>= 25.0.219`.
+[TODO: since mod versions, Minecraft versions and Java versions don't have to follow semver, replace this definition]
 
+### `specialID`
+
+This can be present instead of `ID` for a special-case dependency.
+
+Currently defined IDs:
+
+* `minecraft` - specifies a dependency on Minecraft (Java edition)
+* `java` - specifies a dependency on Java. Java is always required to run Minecraft, but this allows mods to require or conflict with specific Java versions.
 
 ## `placeInDirectory` step
 
