@@ -4,12 +4,12 @@ The Update Format is a simple format that can be used to specify all available v
 ## Fields
 
 ### `formatType`
-Set to `modipUpdates` (TODO: Change name?)
+The type of the format. At the time of writing, it must be set to `1`.
 
 ---
 
 ### `formatVersion`
-Set to `1.0.0`.
+The version of the format. At the time of writing, it must be set to `1`.
 
 ---
 

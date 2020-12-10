@@ -8,7 +8,7 @@ The MODIP Modpack Format is a simple format that lets you store modpacks.
 The type of the format. MUST be set to `modipModpack` for the MODIP Modpack Format.
 
 ### `formatVersion`
-The version of the format. The current value at the time of writing is `1.0.0`.
+The version of the format, stored as a number. The current value at the time of writing is `1`.
 
 ---
 

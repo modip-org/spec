@@ -1,6 +1,6 @@
 {
   "formatType": "modipModpack",
-  "formatVersion": "1.0.0",
+  "formatVersion": 1,
   "id": "modpack-example",
   "name": "Modpack Example",
   "summary": "Summary of the pack",
