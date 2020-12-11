@@ -20,6 +20,25 @@
       "downloads": [
         "https://example.com/mymod.jar"
       ]
+    },
+    {
+      "path": "mods/ClientOnly.jar",
+      "sha256": "< hash >",
+      "env": {
+        "client": true,
+        "server": false
+      },
+      "downloads": [
+        "https://example.com/clientonly.jar"
+      ]
+    },
+    {
+      "path": "mods/OptionalMod.jar",
+      "sha256": "< hash >",
+      "optional": true,
+      "downloads": [
+        "https://example.com/optionalmod.jar"
+      ]
     }
   ]
 }

@@ -53,6 +53,21 @@ The destination path of this file, relative to the Minecraft Instance directory.
 #### `sha256`
 An SHA256 hash of the file, used for integrity checks.
 
+#### `optional` (optional)
+A boolean, set to `true` when this file is not required to be downloaded. This field is not required - if it's not present, assume that the file is required to be downloaded.
+
+#### `env` (optional)
+For files that only exist on a specific environment, this field allows that to be specified. It's an object which contains a `client` and `server` value. For example:
+```json
+"env": {
+    "client": true,
+    "server": false
+}
+```
+In the above example, this is a client-only file. It cannot be installed server side.
+
+`server` refers to the *dedicated* server. Even though clients technically have a logical server, if something is marked server only, it should not be installed on the client.
+
 #### `downloads`
 An array containing URLs where this file may be downloaded.
 
