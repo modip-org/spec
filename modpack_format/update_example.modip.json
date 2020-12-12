@@ -1,0 +1,21 @@
+{
+  "formatType": "modipUpdates",
+  "formatVersion": 1,
+
+  "versions": [
+    {
+      "name": "Second release",
+      "releaseDate": "2020-01-02T12:00:00Z",
+      "downloads": [
+        "https://example.com/pack/second.zip"
+      ]
+    },
+    {
+      "name": "First release",
+      "releaseDate": "2020-01-01T12:00:00Z",
+      "downloads": [
+        "https://example.com/pack/first.zip"
+      ]
+    }
+  ]
+}

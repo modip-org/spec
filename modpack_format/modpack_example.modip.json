@@ -1,0 +1,44 @@
+{
+  "formatType": "modipModpack",
+  "formatVersion": 1,
+  "id": "modpack-example",
+  "name": "Modpack Example",
+  "summary": "Summary of the pack",
+  "description": "Detailed description of the modpack. <b>HTML?</b>",
+  
+  "updates": "https://api.example.com/pack/modpack-example.modip.json",
+
+  "dependencies": {
+    "minecraft": "1.16.4",
+    "fabric-loader": "0.9.0"
+  },
+
+  "files": [
+    {
+      "path": "mods/MyMod.jar",
+      "sha256": "< hash >",
+      "downloads": [
+        "https://example.com/mymod.jar"
+      ]
+    },
+    {
+      "path": "mods/ClientOnly.jar",
+      "sha256": "< hash >",
+      "env": {
+        "client": true,
+        "server": false
+      },
+      "downloads": [
+        "https://example.com/clientonly.jar"
+      ]
+    },
+    {
+      "path": "mods/OptionalMod.jar",
+      "sha256": "< hash >",
+      "optional": true,
+      "downloads": [
+        "https://example.com/optionalmod.jar"
+      ]
+    }
+  ]
+}
