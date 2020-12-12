@@ -1,4 +1,5 @@
 {
+  "$schema": "./json_schema/1.schema.json",
   "formatType": "modipModpack",
   "formatVersion": 1,
   "id": "modpack-example",

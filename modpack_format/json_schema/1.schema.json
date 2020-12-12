@@ -1,0 +1,106 @@
+{
+  "$id": "1.schema.json",
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "title": "MODIP Modpack Format version 1",
+  "type": "object",
+  "required": [
+    "formatType",
+    "formatVersion"
+  ],
+  "properties": {
+    "formatType": {
+      "enum": [ "modipModpack" ]
+    },
+    "formatVersion": {
+      "enum": [ 1 ]
+    },
+    "id": {
+      "type": "string",
+      "description": "A unique identifier of this modpack"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human readable name of this modpack"
+    },
+    "summary": {
+      "type": "string",
+      "description": "A short summary of the modpack, typically just a sentence"
+    },
+    "description": {
+      "type": "string",
+      "description": "A longer description of the modpack"
+    },
+    "updates": {
+      "type": "string",
+      "description": "A URL linking to where updates can be fetched",
+      "format": "uri"
+    },
+    "dependencies": {
+      "type": "object",
+      "description": "Dependencies required for installation of this modpack",
+      "properties": {
+        "minecraft": {
+          "type": "string",
+          "description": "The version of Minecraft to use"
+        },
+        "fabric-loader": {
+          "type": "string",
+          "description": "The version of fabric-loader to use"
+        },
+        "forge": {
+          "type": "string",
+          "description": "The version of Minecraft Forge to use"
+        }
+      }
+    },
+    "files": {
+      "type": "array",
+      "description": "A list of files to install",
+      "items": {
+        "type": "object",
+        "description": "File object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "The path where this file will be placed"
+          },
+          "sha256": {
+            "type": "string",
+            "description": "An SHA256 hash of the file"
+          },
+          "optional": {
+            "type": "boolean",
+            "description": "Whether or not this file is optional"
+          },
+          "env": {
+            "type": "object",
+            "description": "The environment where this file is allowed",
+            "required": [
+              "client",
+              "server"
+            ],
+            "properties": {
+              "client": {
+                "type": "boolean",
+                "description": "Whether or not this file is allowed on the client"
+              },
+              "server": {
+                "type": "boolean",
+                "description": "Whether or not this file is allowed on the server"
+              }
+            }
+          },
+          "downloads": {
+            "type": "array",
+            "description": "URLs where this file can be downloaded",
+            "items": {
+              "type": "string",
+              "description": "A URL where this file can be downloaded",
+              "format": "uri"
+            }
+          }
+        }
+      }
+    }
+  }
+}
