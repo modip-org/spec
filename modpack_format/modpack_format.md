@@ -51,7 +51,7 @@ The files array contains a list of files for the modpack that needs to be downlo
 The destination path of this file, relative to the Minecraft Instance directory. For example, `mods/MyMod.jar` resolves to `.minecraft/mods/MyMod.jar`.
 
 #### `sha256`
-An SHA256 hash of the file, used for integrity checks.
+An SHA256 hash of the file, used for integrity checks. Capitalization doesn't matter.
 
 #### `optional` (optional)
 A boolean, set to `true` when this file is not required to be downloaded. This field is not required - if it's not present, assume that the file is required to be downloaded.
