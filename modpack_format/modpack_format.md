@@ -17,6 +17,9 @@ A unique identifier for this modpack. This field may contain any printable ASCII
 
 ---
 
+### `versionId`
+A unique identifier for this specific version of the modpack. This follows the same rules of allowed characters as `id`.
+
 ### `name`
 Human-readable name of the modpack.
 
@@ -37,7 +40,7 @@ A URL that can be fetched to retrieve information about updates to the modpack. 
 
 ---
 
-### `releaseDate`
+### `releaseDate` (optional)
 The release date of this specific version of the modpack. It MUST be stored as an ISO-8601 conforming string. This MUST include UTC time at the end. A valid example is `2020-01-01T12:00:00Z`. This example date is the 1st of January, 2020, at 12:00:00 UTC. Spaces and time zone offsets (e.g. `+01:00`) CANNOT be used. The `Z` at the end of the string MUST be included and capitalized. The `T` separating the date and time MUST be included and capitalized.
 
 Other values, such as `2020-W32` are NOT allowed. The only allowed format is demonstrated in the example.

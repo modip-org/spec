@@ -4,6 +4,7 @@
 
   "versions": [
     {
+      "id": "second-release",
       "name": "Second release",
       "releaseDate": "2020-01-02T12:00:00Z",
       "downloads": [
@@ -11,6 +12,7 @@
       ]
     },
     {
+      "id": "first-release",
       "name": "First release",
       "releaseDate": "2020-01-01T12:00:00Z",
       "downloads": [

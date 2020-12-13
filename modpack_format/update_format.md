@@ -16,10 +16,13 @@ The version of the format. At the time of writing, it must be set to `1`.
 ### `versions`
 This is an array containing version objects. Each version object is comprised of the following:
 
+#### `id`
+A unique identifier for this version. Launchers will use this to correlate a locally installed version of the modpack with the version in the remote versions list.
+
 #### `name`
 Human-readable name of the version.
 
-#### `releaseDate`
+#### `releaseDate` (optional)
 The release date of the version, following ISO 8601. See the `releaseDate` field in the modpack format for more information.
 
 #### `downloads`
