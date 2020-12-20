@@ -22,11 +22,15 @@
         "type": "object",
         "description": "A version of this modpack",
         "required": [
+          "id",
           "name",
-          "releaseDate",
           "downloads"
         ],
         "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for this version"
+          },
           "name": {
             "type": "string",
             "description": "Human-readable name of this version"

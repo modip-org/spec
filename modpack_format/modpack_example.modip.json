@@ -6,7 +6,8 @@
   "name": "Modpack Example",
   "summary": "Summary of the pack",
   "description": "Detailed description of the modpack. <b>HTML?</b>",
-  
+
+  "versionId": "first-release",
   "updates": "https://api.example.com/pack/modpack-example.modip.json",
 
   "dependencies": {
