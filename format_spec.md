@@ -345,3 +345,15 @@ The most obvious use of Conditions is for specifying client and server side mods
 See **format_values.md** for the list of conditions and groups.
 
 For information on how to implement conditions in a launcher, see **format_implementing.md**.
+
+# Security considerations
+
+A malicious project description may contain a link to, for example, `http://192.168.1.1/cgi-bin/ResetToFactoryDefaults?confirm=yes` (for example, as a download URL) - clicking on this link could (depending on the router model) reset your home router. This is an Internet-wide problem - not specific to MODIP - which could be solved by the router vendor by requiring a CSRF token, or by requiring the HTTP POST method. Systems which download files:
+
+* MAY blacklist RFC1918 and RFC3927 IP addresses, IPv6 link-local addresses, and so on.
+* MAY blacklist certain URL schemes.
+* MUST NOT blacklist the `http` and `https` URL schemes.
+* MUST NOT blacklist port numbers. (Sensitive ports like 25 should already be blocked by the user's browser)
+* SHOULD blacklist the `file` URL scheme (however, some systems may have compelling reasons not to). [Note: This differs from the hyperlink recommendations in formatted_text.md]
+
+[a similar paragraph also appears in formatted_text.md - should we combine these and put it in security_considerations.md?]
