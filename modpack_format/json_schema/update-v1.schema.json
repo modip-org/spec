@@ -1,0 +1,52 @@
+{
+  "$id": "update-v1.schema.json",
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "title": "MODIP Modpack Update Format version 1",
+  "type": "object",
+  "required": [
+    "formatType",
+    "formatVersion",
+    "versions"
+  ],
+  "properties": {
+    "formatType": {
+      "enum": [ "modipUpdates" ]
+    },
+    "formatVersion": {
+      "enum": [ 1 ]
+    },
+    "versions": {
+      "type": "array",
+      "description": "An array of all versions of this modpack",
+      "items": {
+        "type": "object",
+        "description": "A version of this modpack",
+        "required": [
+          "name",
+          "releaseDate",
+          "downloads"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Human-readable name of this version"
+          },
+          "releaseDate": {
+            "type": "string",
+            "description": "Release date of this version",
+            "pattern": "(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2})\\:(\\d{2})\\:(\\d{2})Z"
+          },
+          "downloads": {
+            "type": "array",
+            "description": "A list of URLs where the modpack's zip can be downloaded",
+            "items": {
+              "type": "string",
+              "description": "Download URL for the modpack zip",
+              "format": "uri"
+            }
+          }
+        }
+      }
+    }
+  }
+}

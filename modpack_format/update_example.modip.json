@@ -1,4 +1,5 @@
 {
+  "$schema": "./json_schema/update-v1.schema.json",
   "formatType": "modipUpdates",
   "formatVersion": 1,
 
