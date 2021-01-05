@@ -1,8 +1,12 @@
+MODIP is planned to be two things: a specification for a mod index, and a
+central repository which actually holds metadata for all Minecraft mods,
+formatted according to the specification.
 
-MCIP is two things: an index format, and a central repository.
+The central repository is not the only repository - other people may also
+publish repositories which aren't necessarily related to the central one.
 
-The central repository is not the only repository - other people may also publish repositories
-which aren't necessarily related to the central one.
+The Sync API is an API designed to allow a server of one repository to import
+the entirety of another repository.
 
 # Repository linking
 
@@ -46,6 +50,48 @@ Note: "malicious" here refers to spam, mods that harm computers or worlds, mods 
 and so on. Repositories are **strongly discouraged** from blacklisting mods over simple disputes such as mods which
 refuse to run based on the current player's UUID. However, they are free to add warning labels, or links to patched
 versions of the mods.
+
+# Use cases
+
+## Upstream from central repository
+
+**If** there ends up being a central MODIP repository, the Sync API allows the
+central repository to import metadata directly from the original authors of the
+mods, provided the authors are willing to provide it in this format.
+
+## Downstream from central repository
+
+Systems which allow users to pick and choose mods to install (hereby "modpack
+generators") may find it useful to have their own copy of the metadata for all
+available mods, for quick access.
+
+"Leaf" systems (those with no repositories downstream of them) can also
+reformat the data to better fit their internal data structures.
+
+## Few central repositories
+
+If there ends up being more than one central repository, they may pull data
+from each other using the API, in order to ensure they have the most complete
+data set to present to users.
+
+It is recognized that central repository operators may want to prevent other
+repositories from accessing their data, in order to compete by having more
+data. It is also recognized that this would be dickish behaviour, and other
+participants should respond by cutting off their access in turn.
+
+## Peer-to-peer web
+
+If there is no central repository, we may end up with a loose mesh of peer
+repositories operated by various individuals. Provided that enough connectivity
+exists across the mesh, links between repositories should be sufficient to
+propagate information about any project all across the web, in a
+web-of-trust-style model. Malicious repositories may find their access cut off
+by other participants.
+
+# Other goals
+
+* It should be possible to implement the API as a static file server.
+  Therefore, there should be no query-string parameters (`?foo=bar&baz=quux`).
 
 # Is this a blockchain?
 
