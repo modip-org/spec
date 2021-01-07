@@ -56,11 +56,9 @@ Allowed in inline contexts.
 * `<ul>...</ul>` - bullet list, list items are in `<li>...</li>`
 * `<ol>...</ol>` - numbered list, list items are in `<li>...</li>`
 * `<details><summary>Recipes</summary>...</details>` - a foldable content section (a "spoiler"). `summary` is optional - if omitted, it may default to something like "click here to open" (viewer-dependent). Note: `summary` must be the first child of `details` - there must not even be whitespace in between.
-* Whitespace - double-newline should be similar to HTML's `<p>` and single newline should be similar to HTML's `<br>`
+* `<br/>`, `<p/>` - as in HTML. Note that `<p>` is an empty element, as it represents a paragraph break, not a paragraph.
 
-(TODO: should we have explicit paragraph and newline tags?)
-
-Not that even paragraph breaks and line breaks are not allowed in inline context.
+Note that line breaks and paragraph breaks are not allowed in inline context.
 
 ## Embedded content
 
@@ -127,3 +125,13 @@ Clients should reject these unless they have been verified to not cause a proble
 
 It is well-known that XML DOCTYPE declarations can be used for DoS (Billion Laughs attack) and for file retrieval (XML External Entity attack).
 Parsers MUST NOT accept DOCTYPE declarations. An attacker cannot write a DOCTYPE declaration at the beginning of the document, but they can write one in the middle (which is invalid) - even at the root level by surrounding it in `</root>...<root>`. Implementors should verify that these declarations are ignored or result in parsing errors.
+
+A malicious project description may contain a hyperlink to, for example, `http://192.168.1.1/cgi-bin/ResetToFactoryDefaults?confirm=yes` - clicking on this link could (depending on the router model) reset your home router. This is an Internet-wide problem - not specific to MODIP - which could be solved by the router vendor by requiring a CSRF token, or by requiring the HTTP POST method. Systems which display links:
+
+* MAY blacklist RFC1918 and RFC3927 IP addresses, IPv6 link-local addresses, and so on.
+* MAY blacklist certain URL schemes.
+* MUST NOT blacklist the `http` and `https` URL schemes.
+* MUST NOT blacklist port numbers. (Sensitive ports like 25 should already be blocked by the user's browser)
+* MAY blacklist the `file` URL scheme. [Note: This differs from the download recommendations in format_spec.md]
+
+[a similar paragraph also appears in format_spec.md - should we combine these and put it in security_considerations.md?]
