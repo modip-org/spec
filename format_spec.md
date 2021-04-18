@@ -12,12 +12,6 @@ Fields are stored inside the JSON metadata of a Project. Fields that are optiona
 
 ## General Project Information
 
-### `schemaVersion`
-
-This field MUST be stored as an String. It contains the version of the Format being used, to help with backwards compatibility. The format is ALWAYS stored as a SemVer-conforming String. The current value of this at the time of writing is `1.0.0`.
-
----
-
 ### `id`
 
 The ID of the Project. There is no standard or required format on how to store an ID, other than it CANNOT include spaces. It may be a slug, UUID, random number, or other method of storing IDs. It is RECOMMENDED that IDs are not tied to the name of a project.
@@ -82,6 +76,8 @@ The `src` field is valid for both `video` and `image`. It contains a direct URI 
 `data` URIs are allowed, but are not recommended because they increase the file size substantially.
 
 **`embed` and `src` are conflicting fields and both fields CANNOT be present in the same Media Item.**
+
+TODO: can src be a list?
 
 ##### `caption` (optional)
 
@@ -289,7 +285,14 @@ File Objects contain information on a downloadable file. Fields are as follows:
 
 ##### `name`
 
-There is no restriction on what this value can be. However, it is RECOMMEND that this be the name of the file. Launchers and other automation tools MAY ignore the value. This value CAN be shown to users.
+There is no restriction on what this value can be. However, it is RECOMMENDED that this be the name of the file. Launchers and other automation tools MAY ignore the value. This value CAN be shown to users.
+
+#### `summary`
+
+A short label for the file. This is optional.
+If the purpose of the file is not obvious from the name and rel, this may help the user understand it. E.g. "obfuscated source code".
+If present, it should be displayed after the filename in the file list.
+Inline formatted text can be used.
 
 ##### `sha256`
 
